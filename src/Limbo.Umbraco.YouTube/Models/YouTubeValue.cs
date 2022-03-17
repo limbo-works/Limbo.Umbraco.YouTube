@@ -27,7 +27,7 @@ namespace Limbo.Umbraco.YouTube.Models {
         /// <summary>
         /// Gets embed information for the video.
         /// </summary>
-        [JsonProperty("video")]
+        [JsonProperty("embed")]
         public YouTubeEmbed Embed { get; }
 
         #endregion
