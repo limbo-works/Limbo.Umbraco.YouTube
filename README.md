@@ -7,7 +7,7 @@ This package features a property editor for inserting (via URL or embed code) a 
 Install for Umbraco 9 via [NuGet](https://www.nuget.org/packages/Limbo.Umbraco.YouTube/1.0.0-alpha001):
 
 ```
-dotnet add package Limbo.Umbraco.YouTube --version 1.0.0-alpha001
+dotnet add package Limbo.Umbraco.YouTube --version 1.0.0-alpha002
 ```
 
 ## Configuration
