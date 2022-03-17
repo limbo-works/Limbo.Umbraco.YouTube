@@ -1,5 +1,7 @@
 ﻿using Limbo.Umbraco.YouTube.Services;
 using Microsoft.AspNetCore.Html;
+using Newtonsoft.Json;
+using Skybrud.Essentials.Json.Converters;
 
 namespace Limbo.Umbraco.YouTube.Models {
     
@@ -13,6 +15,8 @@ namespace Limbo.Umbraco.YouTube.Models {
         /// <summary>
         /// Gets the HTML embed code.
         /// </summary>
+        [JsonProperty("html")]
+        [JsonConverter(typeof(StringJsonConverter))]
         public HtmlString Html { get; }
 
         #endregion

@@ -1,4 +1,7 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Limbo.Umbraco.YouTube.Json.Converters;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using Skybrud.Essentials.Json;
 using Skybrud.Essentials.Json.Extensions;
 using Skybrud.Social.Google.YouTube.Models.Videos;
 
@@ -7,7 +10,8 @@ namespace Limbo.Umbraco.YouTube.Models {
     /// <summary>
     /// Class with details about a YouTube video.
     /// </summary>
-    public class YouTubeVideoDetails {
+    [JsonConverter(typeof(JsonObjectBaseConverter))]
+    public class YouTubeVideoDetails : JsonObjectBase {
 
         #region Properties
 
@@ -60,12 +64,12 @@ namespace Limbo.Umbraco.YouTube.Models {
 
         #region Constructors
 
-        private YouTubeVideoDetails(JObject obj) {
-            Id = obj.GetString("id");
-            Snippet = obj.GetObject("snippet", YouTubeVideoSnippet.Parse);
-            ContentDetails = obj.GetObject("contentDetails", YouTubeVideoContentDetails.Parse);
-            Status = obj.GetObject("status", YouTubeVideoStatus.Parse);
-            Statistics = obj.GetObject("statistics", YouTubeVideoStatistics.Parse);
+        private YouTubeVideoDetails(JObject json) : base(json) {
+            Id = json.GetString("id");
+            Snippet = json.GetObject("snippet", YouTubeVideoSnippet.Parse);
+            ContentDetails = json.GetObject("contentDetails", YouTubeVideoContentDetails.Parse);
+            Status = json.GetObject("status", YouTubeVideoStatus.Parse);
+            Statistics = json.GetObject("statistics", YouTubeVideoStatistics.Parse);
         }
 
         #endregion
@@ -73,12 +77,12 @@ namespace Limbo.Umbraco.YouTube.Models {
         #region Static methods
 
         /// <summary>
-        /// Returns a new <see cref="YouTubeVideoDetails"/> parsed from the specified <paramref name="obj"/>.
+        /// Returns a new <see cref="YouTubeVideoDetails"/> parsed from the specified <paramref name="json"/>.
         /// </summary>
-        /// <param name="obj">The instance of <see cref="JObject"/> to parse.</param>
+        /// <param name="json">The instance of <see cref="JObject"/> to parse.</param>
         /// <returns>An instance of <see cref="YouTubeVideoDetails"/>.</returns>
-        public static YouTubeVideoDetails Parse(JObject obj) {
-            return obj == null ? null : new YouTubeVideoDetails(obj);
+        public static YouTubeVideoDetails Parse(JObject json) {
+            return json == null ? null : new YouTubeVideoDetails(json);
         }
 
         #endregion
