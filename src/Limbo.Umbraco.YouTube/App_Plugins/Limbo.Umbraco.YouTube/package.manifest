@@ -1,0 +1,9 @@
+﻿{
+  "css": [
+    "/App_Plugins/Limbo.Umbraco.YouTube/Styles/Default.css"
+  ],
+  "javascript": [
+    "/App_Plugins/Limbo.Umbraco.YouTube/Scripts/Services/YouTubeService.js",
+    "/App_Plugins/Limbo.Umbraco.YouTube/Scripts/Controllers/Video.js"
+  ]
+}

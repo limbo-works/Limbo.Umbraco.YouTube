@@ -1,0 +1,87 @@
+﻿@youtube: #D7143A;
+
+.icon-youtube {
+    svg {
+        path {
+            fill: @youtube;
+        }
+    }
+}
+
+.youtube-video {
+
+    position: relative;
+
+    &.loading > div {
+        opacity: 0.5;
+    }
+    
+    input {
+        width: 100%;
+        flex: 1;
+    }
+    
+    textarea {
+        width: 100%;
+        flex: 1;
+        min-height: 110px;
+        resize: vertical;
+    }
+
+    &-input {
+        display: flex;
+    }
+
+    button {
+        margin-left: 7px;
+        height: 32px;
+    }
+
+    &-details {
+        display: flex;
+        margin-top: 10px;
+        img {
+            margin-right: 10px;
+        }
+
+        table {
+            background: none;
+            th {
+                text-align: left;
+                padding-right: 25px;
+            }
+            th, td {
+                font-size: 14px;
+                vertical-align: top;
+            }
+            tr + tr {
+                th, td {
+                    padding-top: 4px;
+                }
+            }
+        }
+
+    }
+
+    pre {
+        display: none;
+    }
+
+    .youtube-thumbnail + div {
+        margin-left: 10px;
+    }
+
+    .umb-editors & {
+
+        &-details {
+            display: block;
+            .youtube-thumbnail + div {
+                margin-top: 10px;
+                margin-left: 0;
+            }
+
+        }
+
+    }
+
+}

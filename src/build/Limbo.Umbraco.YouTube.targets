@@ -1,0 +1,26 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup>
+    <LimboUmbracoYouTubeContentFilesPath>$(MSBuildThisFileDirectory)..\content\App_Plugins\Limbo.Umbraco.YouTube\**\*.*</LimboUmbracoYouTubeContentFilesPath>
+  </PropertyGroup>
+
+  <Target Name="CopyLimboUmbracoYouTubeAssets" BeforeTargets="Build">
+    <ItemGroup>
+      <LimboUmbracoYouTubeContentFiles Include="$(LimboUmbracoYouTubeContentFilesPath)" />
+    </ItemGroup>
+    <Message Text="Copying Limbo.Umbraco.YouTube files: $(LimboUmbracoYouTubeContentFilesPath) - #@(LimboUmbracoYouTubeContentFiles->Count()) files"  Importance="high" />
+    <Copy
+      SourceFiles="@(LimboUmbracoYouTubeContentFiles)"
+      DestinationFiles="@(LimboUmbracoYouTubeContentFiles->'$(MSBuildProjectDirectory)\App_Plugins\Limbo.Umbraco.YouTube\%(RecursiveDir)%(Filename)%(Extension)')"
+      SkipUnchangedFiles="true" />
+  </Target>
+
+  <Target Name="ClearLimboUmbracoYouTubeAssets" BeforeTargets="Clean">
+    <ItemGroup>
+      <LimboUmbracoYouTubeDir Include="$(MSBuildProjectDirectory)\App_Plugins\Limbo.Umbraco.YouTube\" />
+    </ItemGroup>
+    <Message Text="Clear old Limbo.Umbraco.YouTube files"  Importance="high" />
+    <RemoveDir Directories="@(LimboUmbracoYouTubeDir)"  />
+  </Target>
+
+</Project>

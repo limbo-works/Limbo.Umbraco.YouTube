@@ -1,0 +1,62 @@
+﻿.icon-youtube svg path {
+  fill: #D7143A;
+}
+.youtube-video {
+  position: relative;
+}
+.youtube-video.loading > div {
+  opacity: 0.5;
+}
+.youtube-video input {
+  width: 100%;
+  flex: 1;
+}
+.youtube-video textarea {
+  width: 100%;
+  flex: 1;
+  min-height: 110px;
+  resize: vertical;
+}
+.youtube-video-input {
+  display: flex;
+}
+.youtube-video button {
+  margin-left: 7px;
+  height: 32px;
+}
+.youtube-video-details {
+  display: flex;
+  margin-top: 10px;
+}
+.youtube-video-details img {
+  margin-right: 10px;
+}
+.youtube-video-details table {
+  background: none;
+}
+.youtube-video-details table th {
+  text-align: left;
+  padding-right: 25px;
+}
+.youtube-video-details table th,
+.youtube-video-details table td {
+  font-size: 14px;
+  vertical-align: top;
+}
+.youtube-video-details table tr + tr th,
+.youtube-video-details table tr + tr td {
+  padding-top: 4px;
+}
+.youtube-video pre {
+  display: none;
+}
+.youtube-video .youtube-thumbnail + div {
+  margin-left: 10px;
+}
+.umb-editors .youtube-video-details {
+  display: block;
+}
+.umb-editors .youtube-video-details .youtube-thumbnail + div {
+  margin-top: 10px;
+  margin-left: 0;
+}
