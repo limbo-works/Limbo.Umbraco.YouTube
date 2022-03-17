@@ -100,7 +100,7 @@ namespace Limbo.Umbraco.YouTube.Services {
         /// <param name="credentials">The credentials.</param>
         /// <param name="http">When this method returns, holds the created HTTP service if successful; otherwise, <c>null</c>.</param>
         /// <returns><c>true</c> if successful; otherwise, <c>false</c>.</returns>
-        public virtual bool TryGetHttpService(YouTubeCredentials credentials, out Skybrud.Social.Google.YouTube.YouTubeService http) {
+        public virtual bool TryGetHttpService(YouTubeCredentials credentials, out YouTubeHttpService http) {
 
             if (credentials == null) throw new ArgumentNullException(nameof(credentials));
 
@@ -109,8 +109,8 @@ namespace Limbo.Umbraco.YouTube.Services {
             //    return true;
             //}
 
-            if (!string.IsNullOrWhiteSpace(credentials.ServerKey)) {
-                http = GoogleService.CreateFromServerKey(credentials.ServerKey).YouTube();
+            if (!string.IsNullOrWhiteSpace(credentials.ApiKey)) {
+                http = GoogleHttpService.CreateFromApiKey(credentials.ApiKey).YouTube();
                 return true;
             }
 

@@ -31,7 +31,7 @@
     <PackageReference Include="Skybrud.Essentials" Version="1.1.37" />
     <PackageReference Include="Skybrud.Essentials.AspNetCore" Version="1.0.0-alpha003" />
     <PackageReference Include="Skybrud.Essentials.Http" Version="1.0.16" />
-    <PackageReference Include="Skybrud.Social.Google.YouTube" Version="1.0.0-beta001" />
+    <PackageReference Include="Skybrud.Social.Google.YouTube" Version="1.0.0-beta002" />
     <PackageReference Include="Umbraco.Cms.Core" Version="9.0.0" />
     <PackageReference Include="Umbraco.Cms.Web.Website" Version="9.0.0" />
     <PackageReference Include="Umbraco.Cms.Web.BackOffice" Version="9.0.0" />

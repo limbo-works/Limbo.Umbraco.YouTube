@@ -20,7 +20,7 @@ namespace Limbo.Umbraco.YouTube.Models {
         /// <summary>
         /// If configured, gets the Google server key. Server keys allow accessing the YouTube API without a user context.
         /// </summary>
-        public string ServerKey { get; internal set; }
+        public string ApiKey { get; internal set; }
         
         /// <summary>
         /// Initializes a new instance with default options.
