@@ -23,7 +23,7 @@ In order to access the YouTube API, the package needs to be configured with a se
           "Key": "1f22f315-e208-4c5f-86c5-3793be89ba9c",
           "Name": "MyProject",
           "Description": "A description about the credentials.",
-          "ServerKey": "Your server key here."
+          "ApiKey": "Your server key here."
         }
       ]
     }
@@ -35,6 +35,6 @@ In order to access the YouTube API, the package needs to be configured with a se
 
 **Name** and **Description** are currently not used, but are meant to be shown in the UI to identify the credentials to the user.
 
-**ServerKey** should be an API key obtained from the [Google Cloud Platform](https://console.cloud.google.com/) You can create new apps/projects via the [create project page](https://console.cloud.google.com/projectcreate). Once your project has been created, you can go to the [credentials page](https://console.cloud.google.com/apis/credentials) to create an API key.
+**ApiKey** should be an API key obtained from the [Google Cloud Platform](https://console.cloud.google.com/) You can create new apps/projects via the [create project page](https://console.cloud.google.com/projectcreate). Once your project has been created, you can go to the [credentials page](https://console.cloud.google.com/apis/credentials) to create an API key.
 
-The API key let's this package access the YouTube APi on behalf of your app/project. 
+The API key let's this package access the YouTube API on behalf of your app/project.
