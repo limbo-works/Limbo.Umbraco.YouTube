@@ -26,8 +26,10 @@
         } else {
 
             vm.embed = false;
-            
+
+            delete $scope.model.value.credentials;
             delete $scope.model.value.video;
+            delete $scope.model.value.embed;
 
             vm.updateUI();
 
@@ -48,8 +50,6 @@
     vm.updateUI = function () {
 
         const embed = $scope.model.value.source && $scope.model.value.source.indexOf("<") >= 0;
-
-        window.hest = $element[0];
 
         if (embed !== vm.embed) {
             vm.embed = embed;
