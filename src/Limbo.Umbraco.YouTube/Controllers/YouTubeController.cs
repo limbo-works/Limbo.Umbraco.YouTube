@@ -62,7 +62,7 @@ namespace Limbo.Umbraco.YouTube.Controllers {
                 credentials = new {
                     key = credentials.Key
                 },
-                video,
+                video = video?.JObject,
                 embed
             };
 
