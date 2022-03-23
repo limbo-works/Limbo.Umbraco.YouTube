@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using Limbo.Umbraco.YouTube.Models;
+using Limbo.Umbraco.YouTube.Models.Credentials;
+using Limbo.Umbraco.YouTube.Models.Settings;
 using Microsoft.Extensions.Options;
 using Skybrud.Essentials.Http.Collections;
 using Skybrud.Social.Google;
@@ -13,7 +14,7 @@ namespace Limbo.Umbraco.YouTube.Services {
     /// Service for working with the YouTube integration.
     /// </summary>
     public class YouTubeService {
-        
+
         private readonly IOptions<YouTubeSettings> _settings;
 
         #region Constructors

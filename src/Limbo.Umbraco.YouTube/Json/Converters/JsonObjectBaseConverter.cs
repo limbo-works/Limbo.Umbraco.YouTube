@@ -3,12 +3,12 @@ using Newtonsoft.Json;
 using Skybrud.Essentials.Json;
 
 namespace Limbo.Umbraco.YouTube.Json.Converters {
-    
+
     /// <summary>
     /// JSON converter for serializing instances of <see cref="JsonObjectBase"/>.
     /// </summary>
     public class JsonObjectBaseConverter : JsonConverter {
-        
+
         /// <inheritdoc />
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer) {
             switch (value) {
@@ -16,13 +16,13 @@ namespace Limbo.Umbraco.YouTube.Json.Converters {
                     writer.WriteNull();
                     return;
                 case JsonObjectBase obj: {
-                    if (obj.JObject == null) {
-                        writer.WriteNull();
-                    } else {
-                        obj.JObject.WriteTo(writer);
+                        if (obj.JObject == null) {
+                            writer.WriteNull();
+                        } else {
+                            obj.JObject.WriteTo(writer);
+                        }
+                        return;
                     }
-                    return;
-                }
                 default:
                     throw new Exception("Unsupported type: " + value.GetType());
             }
@@ -32,7 +32,7 @@ namespace Limbo.Umbraco.YouTube.Json.Converters {
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer) {
             throw new NotImplementedException();
         }
-        
+
         /// <inheritdoc />
         public override bool CanConvert(Type objectType) {
             return objectType == typeof(JsonObjectBase);

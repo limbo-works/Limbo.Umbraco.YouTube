@@ -1,7 +1,8 @@
-﻿using Umbraco.Cms.Core.Configuration.Models;
+﻿using Limbo.Umbraco.YouTube.Models.Credentials;
+using Umbraco.Cms.Core.Configuration.Models;
 
-namespace Limbo.Umbraco.YouTube.Models {
-    
+namespace Limbo.Umbraco.YouTube.Models.Settings {
+
     /// <summary>
     /// Class representing the settings for this package.
     /// </summary>

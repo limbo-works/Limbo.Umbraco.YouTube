@@ -2,14 +2,12 @@
 
     const vm = this;
 
-    if (!$scope.model.value) {
-        $scope.model.value = { source: "" };
-    }
+    let rawVideoData = null;
 
     // Gets information about the video of the entered URL
-    vm.getVideo = function() {
+    vm.getVideo = function () {
 
-        const source = $scope.model.value.source.trim();
+        const source = $scope.model.value && $scope.model.value.source ? $scope.model.value.source.trim() : null;
 
         if (source) {
 
@@ -17,15 +15,24 @@
             vm.updateUI();
 
             youTubeService.getVideo(source).then(function (res) {
+
+                // Update the credentials and embed details
                 $scope.model.value.credentials = res.data.credentials;
-                $scope.model.value.video = res.data.video;
+                $scope.model.value.embed = res.data.embed;
+
+                // As Umbraco/JSON.net will corrupt any timestamps in the JSON, we need to store it as serialized
+                $scope.model.value.video = { _data: angular.toJson(res.data.video) };
+                rawVideoData = res.data.video;
+
                 vm.loading = false;
                 vm.updateUI();
+
             });
 
         } else {
 
             vm.embed = false;
+            rawVideoData = null;
 
             delete $scope.model.value.credentials;
             delete $scope.model.value.video;
@@ -49,7 +56,7 @@
     // Updates the video information for the UI
     vm.updateUI = function () {
 
-        const embed = $scope.model.value.source && $scope.model.value.source.indexOf("<") >= 0;
+        const embed = $scope.model.value && $scope.model.value.source && $scope.model.value.source.indexOf("<") >= 0;
 
         if (embed !== vm.embed) {
             vm.embed = embed;
@@ -61,19 +68,39 @@
                 }, 20);
             }
         }
-
-        const video = $scope.model.value.video;
-
-        if (!video) {
+        
+        if (!rawVideoData) {
+            vm.videoId = null;
+            vm.title = null,
+            vm.duration = null;
             vm.thumbnail = null;
             return;
         }
 
-        vm.duration = youTubeService.getDuration(video);
-        vm.thumbnail = youTubeService.getThumbnail(video);
+        vm.videoId = rawVideoData.id;
+        vm.title = rawVideoData.snippet?.title,
+        vm.duration = youTubeService.getDuration(rawVideoData);
+        vm.thumbnail = youTubeService.getThumbnail(rawVideoData);
 
     };
 
-    vm.updateUI();
+    function init() {
+
+        if (!$scope.model.value) {
+            $scope.model.value = null;
+            return;
+        }
+
+        if (!$scope.model.value.video) return;
+        if (!$scope.model.value.video._data) return;
+
+        // Get the Vimeo video data from the "_data" property (necessary due to Umbraco/JSON.net issue)
+        rawVideoData = angular.fromJson($scope.model.value.video._data);
+
+        vm.updateUI();
+
+    }
+
+    init();
 
 });

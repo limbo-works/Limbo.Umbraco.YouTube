@@ -1,14 +1,15 @@
-﻿using Limbo.Umbraco.YouTube.Services;
+﻿using Limbo.Umbraco.Video.Models.Videos;
+using Limbo.Umbraco.YouTube.Services;
 using Microsoft.AspNetCore.Html;
 using Newtonsoft.Json;
 using Skybrud.Essentials.Json.Converters;
 
-namespace Limbo.Umbraco.YouTube.Models {
-    
+namespace Limbo.Umbraco.YouTube.Models.Videos {
+
     /// <summary>
     /// Class representing the embed options of the video.
     /// </summary>
-    public class YouTubeEmbed {
+    public class YouTubeEmbed : IVideoEmbed {
 
         #region Properties
 

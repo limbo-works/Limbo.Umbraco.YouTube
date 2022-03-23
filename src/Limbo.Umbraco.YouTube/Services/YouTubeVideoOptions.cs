@@ -5,7 +5,7 @@ using Skybrud.Essentials.Common;
 using Skybrud.Essentials.Http.Collections;
 
 namespace Limbo.Umbraco.YouTube.Services {
-   
+
     /// <summary>
     /// Class with options describing a video.
     /// </summary>
@@ -18,7 +18,7 @@ namespace Limbo.Umbraco.YouTube.Services {
         /// </summary>
         [JsonProperty("videoId")]
         public string VideoId { get; set; }
-        
+
         /// <summary>
         /// Gets or sets the time offset at which the video should begin playing. The player looks for the closest
         /// keyframe at or before the time that you specify.
@@ -64,7 +64,7 @@ namespace Limbo.Umbraco.YouTube.Services {
         /// <param name="height">The height of the video.</param>
         /// <returns>An instance of <see cref="HtmlString"/> representing the HTML embed code.</returns>
         public virtual HtmlString GetEmbedCode(int? width, int? height) {
-            
+
             width ??= 560;
             height ??= 315;
 

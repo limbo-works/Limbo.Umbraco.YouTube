@@ -1,5 +1,5 @@
 ﻿using System;
-using Limbo.Umbraco.YouTube.Models;
+using Limbo.Umbraco.YouTube.Models.Settings;
 using Limbo.Umbraco.YouTube.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
@@ -11,13 +11,13 @@ using Umbraco.Cms.Core.DependencyInjection;
 #pragma warning disable 1591
 
 namespace Limbo.Umbraco.YouTube.Composers {
-    
+
     public class YouTubeComposer : IComposer {
 
         public void Compose(IUmbracoBuilder builder) {
-            
+
             builder.Services.AddTransient<YouTubeService>();
-            
+
             builder.AddUmbracoOptions<YouTubeSettings>();
 
         }

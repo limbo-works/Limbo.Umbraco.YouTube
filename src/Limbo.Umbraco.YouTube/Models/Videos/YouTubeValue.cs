@@ -1,14 +1,15 @@
-﻿using Limbo.Umbraco.YouTube.PropertyEditors;
+﻿using Limbo.Umbraco.Video.Models.Videos;
+using Limbo.Umbraco.YouTube.PropertyEditors;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Skybrud.Essentials.Json.Extensions;
 
-namespace Limbo.Umbraco.YouTube.Models {
-    
+namespace Limbo.Umbraco.YouTube.Models.Videos {
+
     /// <summary>
     /// Class representing the value of the <see cref="YouTubeEditor"/> property editor.
     /// </summary>
-    public class YouTubeValue {
+    public class YouTubeValue : IVideoValue {
 
         #region Properties
 
@@ -29,6 +30,10 @@ namespace Limbo.Umbraco.YouTube.Models {
         /// </summary>
         [JsonProperty("embed")]
         public YouTubeEmbed Embed { get; }
+
+        IVideoDetails IVideoValue.Video => Video;
+
+        IVideoEmbed IVideoValue.Embed => Embed;
 
         #endregion
 
