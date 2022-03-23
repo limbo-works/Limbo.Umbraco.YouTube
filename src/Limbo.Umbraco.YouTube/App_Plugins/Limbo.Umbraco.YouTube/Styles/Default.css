@@ -49,6 +49,8 @@
 }
 .youtube-video pre {
   display: none;
+  font-size: 10px;
+  line-height: 12px;
 }
 .youtube-video .youtube-thumbnail + div {
   margin-left: 10px;
