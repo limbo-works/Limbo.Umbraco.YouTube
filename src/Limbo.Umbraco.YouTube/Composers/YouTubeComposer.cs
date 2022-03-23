@@ -1,4 +1,5 @@
 ﻿using System;
+using Limbo.Umbraco.YouTube.Manifests;
 using Limbo.Umbraco.YouTube.Models.Settings;
 using Limbo.Umbraco.YouTube.Services;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,6 +18,8 @@ namespace Limbo.Umbraco.YouTube.Composers {
         public void Compose(IUmbracoBuilder builder) {
 
             builder.Services.AddTransient<YouTubeService>();
+            
+            builder.ManifestFilters().Append<YouTubeManifestFilter>();
 
             builder.AddUmbracoOptions<YouTubeSettings>();
 

@@ -45,7 +45,6 @@
     <Content Include="App_Plugins\Limbo.Umbraco.YouTube\**\*.html" />
     <Content Include="App_Plugins\Limbo.Umbraco.YouTube\**\*.js" />
     <Content Include="App_Plugins\Limbo.Umbraco.YouTube\Lang\*.xml" />
-    <Content Include="App_Plugins\Limbo.Umbraco.YouTube\package.manifest" />
   </ItemGroup>
 
   <!-- Include the targets file -->
