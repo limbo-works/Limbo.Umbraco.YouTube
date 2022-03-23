@@ -1,6 +1,6 @@
 ﻿<div class="youtube-video" ng-controller="Limbo.Umbraco.YouTube.Video as vm" ng-class="{loading: vm.loading}">
     <div class="youtube-video-input">
-        <input type="text" ng-show="!vm.embed" ng-model="model.value.source" ng-change="vm.updated()" />
+        <input type="text" ng-show="!vm.embed" ng-model="model.value.source" ng-change="vm.updated()" placeholder="limboVideo_urlPlaceholder" localize="placeholder" />
         <textarea ng-show="vm.embed" ng-model="model.value.source" ng-change="vm.updated()" rows="5"></textarea>
         <!--<button type="button" ng-click="vm.add()" class="btn btn-default">
             <i class="icon icon-search"></i>
