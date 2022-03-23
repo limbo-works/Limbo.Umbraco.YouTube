@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using Limbo.Umbraco.YouTube.Extensions;
 using Limbo.Umbraco.YouTube.Models.Credentials;
 using Limbo.Umbraco.YouTube.Models.Settings;
+using Limbo.Umbraco.YouTube.Options;
 using Microsoft.Extensions.Options;
-using Skybrud.Essentials.Http.Collections;
 using Skybrud.Social.Google;
 using Skybrud.Social.Google.YouTube;
 
@@ -42,8 +43,7 @@ namespace Limbo.Umbraco.YouTube.Services {
             if (string.IsNullOrWhiteSpace(source)) return false;
 
             // Embed options
-            int start = 0;
-            bool cookieless = false;
+            bool? cookieless = source.Contains("youtube-nocookie.com") ? true : null;
 
             // Is "source" an iframe?
             if (source.StartsWith("<iframe")) {
@@ -55,20 +55,6 @@ namespace Limbo.Umbraco.YouTube.Services {
                 // Update the source with the value from the "src" attribute
                 source = m0.Groups[1].Value;
 
-                string[] url = source.Split('?');
-
-                if (source.Contains("youtube-nocookie.com")) {
-                    cookieless = true;
-                }
-
-                if (url.Length > 1) {
-
-                    IHttpQueryString query = HttpQueryString.ParseQueryString(url[1]);
-
-                    start = query.GetInt32("start");
-
-                }
-
             }
 
             // Does "source" match known formats of YouTube video URLs?
@@ -78,10 +64,9 @@ namespace Limbo.Umbraco.YouTube.Services {
             // Get the video ID from the regex
             string videoId = m1.Groups[2].Value;
 
-            options = new YouTubeVideoOptions(videoId);
+            (_, string query) = source.Split('?');
 
-            if (start > 0) options.Start = TimeSpan.FromSeconds(start);
-            options.DisableCookies = cookieless;
+            options = new YouTubeVideoOptions(videoId, query, cookieless);
 
             return true;
 

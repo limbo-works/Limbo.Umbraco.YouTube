@@ -35,7 +35,7 @@ namespace Limbo.Umbraco.YouTube.Models.Videos {
         /// Gets the Vimeo URL of the video.
         /// </summary>
         [JsonProperty("url")]
-        public string Url => null;
+        public string Url => $"https://www.youtube.com/watch?v={Id}";
 
         /// <summary>
         /// Gets the title of the video.
@@ -107,11 +107,13 @@ namespace Limbo.Umbraco.YouTube.Models.Videos {
         /// <summary>
         /// Gets a reference to the <strong>statistics</strong> part of the video.
         /// </summary>
+        [JsonIgnore]
         public YouTubeVideoStatistics Statistics => Data?.Statistics;
 
         /// <summary>
         /// Gets whether the <see cref="Statistics"/> property was included in the response.
         /// </summary>
+        [JsonIgnore]
         public bool HasStatistics => Statistics != null;
 
         IEnumerable<IVideoThumbnail> IVideoDetails.Thumbnails => Thumbnails;

@@ -1,5 +1,5 @@
 ﻿using Limbo.Umbraco.Video.Models.Videos;
-using Limbo.Umbraco.YouTube.Services;
+using Limbo.Umbraco.YouTube.Options;
 using Microsoft.AspNetCore.Html;
 using Newtonsoft.Json;
 using Skybrud.Essentials.Json.Converters;
@@ -14,18 +14,32 @@ namespace Limbo.Umbraco.YouTube.Models.Videos {
         #region Properties
 
         /// <summary>
+        /// Gets the embed URL.
+        /// </summary>
+        [JsonProperty("url")]
+        public string Url { get; }
+
+        /// <summary>
         /// Gets the HTML embed code.
         /// </summary>
         [JsonProperty("html")]
         [JsonConverter(typeof(StringJsonConverter))]
         public HtmlString Html { get; }
 
+        /// <summary>
+        /// Gets the player options.
+        /// </summary>
+        [JsonProperty("options", NullValueHandling = NullValueHandling.Ignore)]
+        public YouTubeEmbedPlayerOptions Options { get; }
+        
         #endregion
 
         #region Constructors
 
         internal YouTubeEmbed(YouTubeVideoDetails video) {
-            Html = new YouTubeVideoOptions(video.Id).GetEmbedCode();
+            YouTubeEmbedOptions o = new(video, Options ?? new YouTubeEmbedPlayerOptions());
+            Url = o.GetEmbedUrl();
+            Html = o.GetEmbedCode();
         }
 
         #endregion

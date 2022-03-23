@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using Limbo.Umbraco.YouTube.Models.Credentials;
+using Limbo.Umbraco.YouTube.Options;
 using Limbo.Umbraco.YouTube.Services;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
@@ -57,13 +58,17 @@ namespace Limbo.Umbraco.YouTube.Controllers {
             JObject embed = JObject.FromObject(options);
             embed.Remove("videoId");
 
-            return new {
+            JObject json = JObject.FromObject(new {
                 credentials = new {
                     key = credentials.Key
                 },
                 video = video.JObject,
                 embed
-            };
+            });
+
+            if (!embed.Properties().Any()) json.Remove("embed");
+            
+            return json;
 
         }
 
