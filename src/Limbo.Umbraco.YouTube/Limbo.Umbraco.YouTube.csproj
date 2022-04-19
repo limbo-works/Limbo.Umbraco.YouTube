@@ -49,7 +49,7 @@
 
   <!-- Include the targets file -->
   <ItemGroup>
-    <Content Include="../build/$(AssemblyName).targets" PackagePath="build\$(AssemblyName).targets" />
+    <Content Include="../build/$(AssemblyName).targets" PackagePath="buildTransitive\$(AssemblyName).targets" />
   </ItemGroup>
 
   <!-- Include package icon for NuGet -->
