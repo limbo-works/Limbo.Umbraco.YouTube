@@ -28,7 +28,7 @@
 
   <!-- Include NuGet dependencies -->
   <ItemGroup>
-	<PackageReference Include="Limbo.Umbraco.Video" Version="1.0.0-beta001">
+	<PackageReference Include="Limbo.Umbraco.Video" Version="1.0.0-beta002">
 	  <ExcludeAssets>content;build</ExcludeAssets>
 	</PackageReference>
     <PackageReference Include="Skybrud.Essentials.AspNetCore" Version="1.0.0-alpha003" />
