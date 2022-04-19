@@ -14,7 +14,7 @@ namespace Limbo.Umbraco.YouTube.Manifests {
                 BundleOptions = BundleOptions.Independent,
                 Scripts = new[] {
                     $"/App_Plugins/{YouTubePackage.Alias}/Scripts/Services/YouTubeService.js",
-                    $"/App_Plugins/{YouTubePackage.Alias}/Scripts//Scripts/Controllers/Video.js"
+                    $"/App_Plugins/{YouTubePackage.Alias}/Scripts/Controllers/Video.js"
                 },
                 Stylesheets = new [] {
                     $"/App_Plugins/{YouTubePackage.Alias}/Styles/Default.css"
