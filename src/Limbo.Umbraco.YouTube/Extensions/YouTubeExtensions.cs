@@ -11,12 +11,6 @@ using Umbraco.Cms.Core.DependencyInjection;
 namespace Limbo.Umbraco.YouTube.Extensions {
     
     internal static class YouTubeExtensions {
-        
-        public static void Deconstruct<T>(this IList<T> list, out T first, out T second) {
-            // TODO: Move to Skybrud.Essentials
-            first = list.Count > 0 ? list[0] : default;
-            second = list.Count > 1 ? list[1] : default;
-        }
 
         public static bool TryGetBoolean(this IHttpQueryString query, string key, out bool result) {
             // TODO: Move to Skybrud.Essentials.Http
@@ -33,7 +27,7 @@ namespace Limbo.Umbraco.YouTube.Extensions {
             return double.TryParse(query[key], out result);
         }
         
-        internal static IUmbracoBuilder AddUmbracoOptions<TOptions>(this IUmbracoBuilder builder, Action<OptionsBuilder<TOptions>> configure = null) where TOptions : class {
+        internal static IUmbracoBuilder AddUmbracoOptions<TOptions>(this IUmbracoBuilder builder, Action<OptionsBuilder<TOptions>>? configure = null) where TOptions : class {
 
             var umbracoOptionsAttribute = typeof(TOptions).GetCustomAttribute<UmbracoOptionsAttribute>();
             if (umbracoOptionsAttribute is null) {

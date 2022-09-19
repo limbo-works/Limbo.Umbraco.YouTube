@@ -19,16 +19,12 @@ namespace Limbo.Umbraco.YouTube.PropertyEditors {
             return propertyType.EditorAlias == YouTubeEditor.EditorAlias;
         }
 
-        public override object ConvertSourceToIntermediate(IPublishedElement owner, IPublishedPropertyType propertyType, object source, bool preview) {
+        public override object? ConvertSourceToIntermediate(IPublishedElement owner, IPublishedPropertyType propertyType, object? source, bool preview) {
             return source is string str && str.DetectIsJson() ? JsonUtils.ParseJsonObject(str) : null;
         }
 
-        public override object ConvertIntermediateToObject(IPublishedElement owner, IPublishedPropertyType propertyType, PropertyCacheLevel referenceCacheLevel, object inter, bool preview) {
+        public override object? ConvertIntermediateToObject(IPublishedElement owner, IPublishedPropertyType propertyType, PropertyCacheLevel referenceCacheLevel, object? inter, bool preview) {
             return YouTubeValue.Parse(inter as JObject);
-        }
-
-        public override object ConvertIntermediateToXPath(IPublishedElement owner, IPublishedPropertyType propertyType, PropertyCacheLevel referenceCacheLevel, object inter, bool preview) {
-            return null;
         }
 
         public override Type GetPropertyValueType(IPublishedPropertyType propertyType) {

@@ -16,17 +16,17 @@ namespace Limbo.Umbraco.YouTube.Models.Credentials {
         /// <summary>
         /// Gets the friendly name of the credentials.
         /// </summary>
-        public string Name { get; internal set; }
+        public string Name { get; internal set; } = null!;
 
         /// <summary>
         /// Gets the description of the credentials.
         /// </summary>
-        public string Description { get; internal set; }
+        public string? Description { get; internal set; }
 
         /// <summary>
         /// If configured, gets the Google server key. Server keys allow accessing the YouTube API without a user context.
         /// </summary>
-        public string ApiKey { get; internal set; }
+        public string ApiKey { get; internal set; } = null!;
 
         /// <summary>
         /// Initializes a new instance with default options.

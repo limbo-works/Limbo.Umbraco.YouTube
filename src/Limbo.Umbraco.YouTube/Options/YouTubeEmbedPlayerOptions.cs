@@ -1,6 +1,5 @@
 ﻿using System;
 using Limbo.Umbraco.YouTube.Json.Converters;
-using Limbo.Umbraco.YouTube.Services;
 using Newtonsoft.Json;
 using Skybrud.Essentials.Http.Collections;
 
@@ -89,7 +88,6 @@ namespace Limbo.Umbraco.YouTube.Options {
         /// </summary>
         /// <param name="options">The options.</param>
         public YouTubeEmbedPlayerOptions(YouTubeVideoOptions options) {
-            if (options == null) return;
             Start = options.Start;
             DisableCookies = options.DisableCookies;
         }

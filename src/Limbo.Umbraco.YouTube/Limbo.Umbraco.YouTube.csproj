@@ -1,18 +1,21 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
-    <LangVersion>9.0</LangVersion>
-    <TargetFramework>net5.0</TargetFramework>
-    <ContentTargetFolders>content</ContentTargetFolders>
+    <TargetFramework>net6.0</TargetFramework>
+    <StaticWebAssetBasePath>App_Plugins/$(AssemblyName)</StaticWebAssetBasePath>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <PropertyGroup>
-    <Version>1.0.0-alpha005</Version>
+    <VersionPrefix>2.0.0-alpha001</VersionPrefix>
+    <VersionSuffix Condition="'$(Configuration)'=='Debug'">build$([System.DateTime]::UtcNow.ToString(`yyyyMMddHHmm`))</VersionSuffix>
     <Company>Limbo</Company>
     <Authors>Anders Bjerner</Authors>
     <Copyright>Copyright © 2022</Copyright>
     <Title>Limbo YouTube</Title>
-    <Description>YouTube video picker for Umbraco 9.</Description>
+    <Description>YouTube video picker for Umbraco 10.</Description>
   </PropertyGroup>
 
   <!-- Information for the NuGet package -->
@@ -28,33 +31,26 @@
 
   <!-- Include NuGet dependencies -->
   <ItemGroup>
-	<PackageReference Include="Limbo.Umbraco.Video" Version="1.0.0-beta002">
-	  <ExcludeAssets>content;build;buildTransitive</ExcludeAssets>
-	</PackageReference>
-    <PackageReference Include="Skybrud.Essentials.AspNetCore" Version="1.0.0-alpha003" />
+    <PackageReference Include="Limbo.Umbraco.IconServiceFix" Version="1.0.0" />
+	  <PackageReference Include="Limbo.Umbraco.Video" Version="2.0.2" />
+    <PackageReference Include="Skybrud.Essentials.AspNetCore" Version="1.0.0-alpha007" />
     <PackageReference Include="Skybrud.Social.Google.YouTube" Version="1.0.0-beta002" />
-    <PackageReference Include="Umbraco.Cms.Core" Version="9.0.0" />
-    <PackageReference Include="Umbraco.Cms.Web.Website" Version="9.0.0" />
-    <PackageReference Include="Umbraco.Cms.Web.BackOffice" Version="9.0.0" />
-  </ItemGroup>
-
-  <!-- Include backoffice assets -->
-  <ItemGroup>
-    <Content Include="App_Plugins\Limbo.Umbraco.YouTube\**\*.svg" />
-    <Content Include="App_Plugins\Limbo.Umbraco.YouTube\**\*.css" />
-    <Content Include="App_Plugins\Limbo.Umbraco.YouTube\**\*.html" />
-    <Content Include="App_Plugins\Limbo.Umbraco.YouTube\**\*.js" />
-    <Content Include="App_Plugins\Limbo.Umbraco.YouTube\Lang\*.xml" />
-  </ItemGroup>
-
-  <!-- Include the targets file -->
-  <ItemGroup>
-    <Content Include="../build/$(AssemblyName).targets" PackagePath="buildTransitive\$(AssemblyName).targets" />
+    <PackageReference Include="Umbraco.Cms.Core" Version="10.0.0" />
+    <PackageReference Include="Umbraco.Cms.Web.Website" Version="10.0.0" />
+    <PackageReference Include="Umbraco.Cms.Web.BackOffice" Version="10.0.0" />
   </ItemGroup>
 
   <!-- Include package icon for NuGet -->
   <ItemGroup>
     <Content Include="../build/Limbo.png" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+  <!-- Remove non-package files from the NuGet package -->
+  <ItemGroup>
+    <Content Remove="compilerconfig.json" />
+    <Content Remove="wwwroot/Scripts/Intellisense.js" />
+    <None Include="compilerconfig.json" />
+    <None Include="wwwroot/Scripts/Intellisense.js" />
   </ItemGroup>
 
   <!-- Generate XML documentation -->

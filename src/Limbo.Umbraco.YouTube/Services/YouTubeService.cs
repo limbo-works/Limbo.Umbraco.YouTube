@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using Limbo.Umbraco.YouTube.Extensions;
 using Limbo.Umbraco.YouTube.Models.Credentials;
 using Limbo.Umbraco.YouTube.Models.Settings;
 using Limbo.Umbraco.YouTube.Options;
 using Microsoft.Extensions.Options;
+using Skybrud.Essentials.Collections.Extensions;
 using Skybrud.Social.Google;
 using Skybrud.Social.Google.YouTube;
 
@@ -37,7 +37,7 @@ namespace Limbo.Umbraco.YouTube.Services {
         /// <param name="source">The source </param>
         /// <param name="options"></param>
         /// <returns></returns>
-        public bool TryGetVideoId(string source, out YouTubeVideoOptions options) {
+        public bool TryGetVideoId(string source, out YouTubeVideoOptions? options) {
 
             options = null;
             if (string.IsNullOrWhiteSpace(source)) return false;
@@ -77,7 +77,7 @@ namespace Limbo.Umbraco.YouTube.Services {
         /// </summary>
         /// <returns></returns>
         public IEnumerable<YouTubeCredentials> GetCredentials() {
-            return _settings.Value.Credentials ?? Array.Empty<YouTubeCredentials>();
+            return _settings.Value.Credentials;
         }
 
         /// <summary>
@@ -86,7 +86,7 @@ namespace Limbo.Umbraco.YouTube.Services {
         /// <param name="credentials">The credentials.</param>
         /// <param name="http">When this method returns, holds the created HTTP service if successful; otherwise, <c>null</c>.</param>
         /// <returns><c>true</c> if successful; otherwise, <c>false</c>.</returns>
-        public virtual bool TryGetHttpService(YouTubeCredentials credentials, out YouTubeHttpService http) {
+        public virtual bool TryGetHttpService(YouTubeCredentials credentials, out YouTubeHttpService? http) {
 
             if (credentials == null) throw new ArgumentNullException(nameof(credentials));
 

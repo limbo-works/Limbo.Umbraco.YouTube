@@ -29,7 +29,7 @@ namespace Limbo.Umbraco.YouTube.Models.Videos {
         /// Gets the ID of the video.
         /// </summary>
         [JsonProperty("id")]
-        public string Id => Data?.Id;
+        public string Id => Data.Id;
 
         /// <summary>
         /// Gets the Vimeo URL of the video.
@@ -41,20 +41,22 @@ namespace Limbo.Umbraco.YouTube.Models.Videos {
         /// Gets the title of the video.
         /// </summary>
         [JsonProperty("title")]
-        public string Title => Data?.Snippet?.Title;
+        public string Title => Data.Snippet?.Title ?? string.Empty;
 
         /// <summary>
         /// Gets the description of the video.
         /// </summary>
         [JsonProperty("description")]
-        public string Description => Data?.Snippet?.Description;
+        public string? Description => Data.Snippet?.Description;
 
         /// <summary>
         /// Gets the duration of the video.
         /// </summary>
         [JsonProperty("duration")]
         [JsonConverter(typeof(TimeSpanSecondsConverter))]
-        public TimeSpan Duration => Data?.ContentDetails?.Duration?.Value ?? TimeSpan.Zero;
+        public TimeSpan Duration => Data.ContentDetails?.Duration?.Value ?? TimeSpan.Zero;
+
+        TimeSpan? IVideoDetails.Duration => Duration;
 
         /// <summary>
         /// Gets a list of thumbnails of the video.
@@ -72,7 +74,7 @@ namespace Limbo.Umbraco.YouTube.Models.Videos {
         /// Gets a reference to the <strong>snippet</strong> part of the video.
         /// </summary>
         [JsonIgnore]
-        public YouTubeVideoSnippet Snippet => Data?.Snippet;
+        public YouTubeVideoSnippet? Snippet => Data.Snippet;
 
         /// <summary>
         /// Gets whether the <see cref="Snippet"/> property was included in the response.
@@ -84,7 +86,7 @@ namespace Limbo.Umbraco.YouTube.Models.Videos {
         /// Gets a reference to the <strong>contentDetails</strong> part of the video.
         /// </summary>
         [JsonIgnore]
-        public YouTubeVideoContentDetails ContentDetails => Data?.ContentDetails;
+        public YouTubeVideoContentDetails? ContentDetails => Data.ContentDetails;
 
         /// <summary>
         /// Gets whether the <see cref="ContentDetails"/> property was included in the response.
@@ -96,7 +98,7 @@ namespace Limbo.Umbraco.YouTube.Models.Videos {
         /// Gets a reference to the <strong>status</strong> part of the video.
         /// </summary>
         [JsonIgnore]
-        public YouTubeVideoStatus Status => Data?.Status;
+        public YouTubeVideoStatus? Status => Data.Status;
 
         /// <summary>
         /// Gets whether the <see cref="Status"/> property was included in the response.
@@ -108,7 +110,7 @@ namespace Limbo.Umbraco.YouTube.Models.Videos {
         /// Gets a reference to the <strong>statistics</strong> part of the video.
         /// </summary>
         [JsonIgnore]
-        public YouTubeVideoStatistics Statistics => Data?.Statistics;
+        public YouTubeVideoStatistics? Statistics => Data.Statistics;
 
         /// <summary>
         /// Gets whether the <see cref="Statistics"/> property was included in the response.
@@ -124,9 +126,9 @@ namespace Limbo.Umbraco.YouTube.Models.Videos {
 
         private YouTubeVideoDetails(JObject json) {
 
-            Data = json.GetString("_data", x => JsonUtils.ParseJsonObject(x, YouTubeVideo.Parse));
+            Data = json.GetString("_data", x => JsonUtils.ParseJsonObject(x, YouTubeVideo.Parse))!;
 
-            YouTubeVideoThumbnails thumbnails = Data?.Snippet.Thumbnails;
+            YouTubeVideoThumbnails? thumbnails = Data.Snippet.Thumbnails;
 
             if (thumbnails != null) {
                 Thumbnails = new[] {
@@ -150,7 +152,7 @@ namespace Limbo.Umbraco.YouTube.Models.Videos {
         /// </summary>
         /// <param name="json">The instance of <see cref="JObject"/> to parse.</param>
         /// <returns>An instance of <see cref="YouTubeVideoDetails"/>.</returns>
-        public static YouTubeVideoDetails Parse(JObject json) {
+        public static YouTubeVideoDetails? Parse(JObject? json) {
             return json == null ? null : new YouTubeVideoDetails(json);
         }
 

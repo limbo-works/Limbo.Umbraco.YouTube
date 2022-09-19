@@ -1,4 +1,5 @@
-﻿using Limbo.Umbraco.YouTube.Models.Credentials;
+﻿using System.Collections.Generic;
+using Limbo.Umbraco.YouTube.Models.Credentials;
 using Umbraco.Cms.Core.Configuration.Models;
 
 namespace Limbo.Umbraco.YouTube.Models.Settings {
@@ -12,7 +13,7 @@ namespace Limbo.Umbraco.YouTube.Models.Settings {
         /// <summary>
         /// Gets a collection of the credentials configured for YouTube.
         /// </summary>
-        public YouTubeCredentials[] Credentials { get; internal set; }
+        public IReadOnlyList<YouTubeCredentials> Credentials { get; internal set; } = null!;
 
     }
 

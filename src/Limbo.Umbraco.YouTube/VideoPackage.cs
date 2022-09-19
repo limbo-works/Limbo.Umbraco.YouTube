@@ -22,7 +22,12 @@ namespace Limbo.Umbraco.YouTube {
         /// <summary>
         /// Gets the version of the package.
         /// </summary>
-        public static readonly Version Version = typeof(YouTubePackage).Assembly.GetName().Version;
+        public static readonly Version Version = typeof(YouTubePackage).Assembly.GetName().Version!;
+
+        /// <summary>
+        /// Gets the informational version of the package.
+        /// </summary>
+        public static readonly string InformationalVersion = ReflectionUtils.GetInformationalVersion(typeof(YouTubePackage));
 
         /// <summary>
         /// Gets the semantic version of the package.

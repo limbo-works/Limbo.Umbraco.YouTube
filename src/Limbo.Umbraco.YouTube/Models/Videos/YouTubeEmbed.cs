@@ -24,20 +24,20 @@ namespace Limbo.Umbraco.YouTube.Models.Videos {
         /// </summary>
         [JsonProperty("html")]
         [JsonConverter(typeof(StringJsonConverter))]
-        public HtmlString Html { get; }
+        public IHtmlContent Html { get; }
 
         /// <summary>
         /// Gets the player options.
         /// </summary>
         [JsonProperty("options", NullValueHandling = NullValueHandling.Ignore)]
-        public YouTubeEmbedPlayerOptions Options { get; }
+        public YouTubeEmbedPlayerOptions? Options { get; }
         
         #endregion
 
         #region Constructors
 
         internal YouTubeEmbed(YouTubeVideoDetails video) {
-            YouTubeEmbedOptions o = new(video, Options ?? new YouTubeEmbedPlayerOptions());
+            YouTubeEmbedOptions o = new(video, new YouTubeEmbedPlayerOptions());
             Url = o.GetEmbedUrl();
             Html = o.GetEmbedCode();
         }

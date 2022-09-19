@@ -1,5 +1,4 @@
-﻿using System;
-using System.Web;
+﻿using System.Web;
 using Limbo.Umbraco.YouTube.Models.Videos;
 using Microsoft.AspNetCore.Html;
 using Newtonsoft.Json;
@@ -24,13 +23,13 @@ namespace Limbo.Umbraco.YouTube.Options {
         /// Gets or sets the title of the embed iframe.
         /// </summary>
         [JsonProperty("title", NullValueHandling = NullValueHandling.Ignore)]
-        public string Title { get; set; }
+        public string? Title { get; set; }
 
         /// <summary>
         /// Gets or sets the options for the player.
         /// </summary>
         [JsonProperty("player", NullValueHandling = NullValueHandling.Ignore)]
-        public YouTubeEmbedPlayerOptions Player { get; set; }
+        public YouTubeEmbedPlayerOptions? Player { get; set; }
 
         #endregion
 

@@ -22,8 +22,8 @@ namespace Limbo.Umbraco.YouTube.Models.Videos {
         /// <summary>
         /// Gets the details about the picked video.
         /// </summary>
-        [JsonProperty("video")]
-        public YouTubeVideoDetails Video { get; }
+        [JsonProperty("details")]
+        public YouTubeVideoDetails Details { get; }
 
         /// <summary>
         /// Gets embed information for the video.
@@ -31,7 +31,7 @@ namespace Limbo.Umbraco.YouTube.Models.Videos {
         [JsonProperty("embed")]
         public YouTubeEmbed Embed { get; }
 
-        IVideoDetails IVideoValue.Video => Video;
+        IVideoDetails IVideoValue.Details => Details;
 
         IVideoEmbed IVideoValue.Embed => Embed;
 
@@ -41,15 +41,15 @@ namespace Limbo.Umbraco.YouTube.Models.Videos {
 
         private YouTubeValue(JObject json) {
             Source = json.GetString("source");
-            Video = json.GetObject("video", YouTubeVideoDetails.Parse);
-            Embed = new YouTubeEmbed(Video);
+            Details = json.GetObject("video", YouTubeVideoDetails.Parse)!;
+            Embed = new YouTubeEmbed(Details);
         }
 
         #endregion
 
         #region Static methods
 
-        internal static YouTubeValue Parse(JObject json) {
+        internal static YouTubeValue? Parse(JObject? json) {
             return json == null ? null : new YouTubeValue(json);
         }
 
