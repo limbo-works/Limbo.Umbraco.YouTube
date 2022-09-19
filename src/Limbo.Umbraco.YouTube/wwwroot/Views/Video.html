@@ -32,10 +32,7 @@
                         <localize key="dreambroker_duration">Duration</localize>
                     </th>
                     <td>
-                        <span ng-repeat="dur in vm.duration">
-                            {{dur.value}} <small>{{dur.text}}</small>
-                        </span>
-                        <em ng-show="vm.duration.length == 0">N/A</em>
+                        <limbo-video-duration ng-if="vm.duration" value="vm.duration"></limbo-video-duration>
                     </td>
                 </tr>
             </table>

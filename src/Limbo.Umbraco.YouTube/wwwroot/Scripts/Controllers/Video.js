@@ -79,7 +79,7 @@
 
         vm.videoId = rawVideoData.id;
         vm.title = rawVideoData.snippet?.title,
-        vm.duration = youTubeService.getDuration(rawVideoData);
+        vm.duration = rawVideoData.contentDetails?.duration;
         vm.thumbnail = youTubeService.getThumbnail(rawVideoData);
 
     };
