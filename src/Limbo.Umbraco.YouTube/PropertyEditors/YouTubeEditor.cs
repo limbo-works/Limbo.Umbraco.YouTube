@@ -18,7 +18,7 @@ namespace Limbo.Umbraco.YouTube.PropertyEditors {
 
         internal const string EditorView = "/App_Plugins/Limbo.Umbraco.YouTube/Views/Video.html";
 
-        internal const string EditorIcon = "icon-limbo-youtube color-limbo";
+        internal const string EditorIcon = "icon-limbo-youtube-alt color-limbo";
 
         #endregion
 
