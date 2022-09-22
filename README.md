@@ -4,10 +4,16 @@ This package features a property editor for inserting (via URL or embed code) a 
 
 ## Installation
 
-Install for Umbraco 9 via [NuGet](https://www.nuget.org/packages/Limbo.Umbraco.YouTube/1.0.0-alpha003):
+Install for Umbraco 10 via [NuGet](https://www.nuget.org/packages/Limbo.Umbraco.YouTube/2.0.0-beta001):
 
 ```
-dotnet add package Limbo.Umbraco.YouTube --version 1.0.0-alpha003
+dotnet add package Limbo.Umbraco.YouTube --version 2.0.0-beta001
+```
+
+Install for Umbraco 9 via [NuGet](https://www.nuget.org/packages/Limbo.Umbraco.YouTube/1.0.0-alpha005):
+
+```
+dotnet add package Limbo.Umbraco.YouTube --version 1.0.0-alpha005
 ```
 
 ## Configuration
@@ -38,3 +44,12 @@ In order to access the YouTube API, the package needs to be configured with a se
 **ApiKey** should be an API key obtained from the [Google Cloud Platform](https://console.cloud.google.com/) You can create new apps/projects via the [create project page](https://console.cloud.google.com/projectcreate). Once your project has been created, you can go to the [credentials page](https://console.cloud.google.com/apis/credentials) to create an API key.
 
 The API key let's this package access the YouTube API on behalf of your app/project.
+
+
+## Screenshots
+
+![image](https://user-images.githubusercontent.com/3634580/191851451-b3521520-53b1-48fc-9770-0fab12df719d.png)  
+*Insert video by URL*
+
+![image](https://user-images.githubusercontent.com/3634580/191851581-52e346bc-b3a9-49b1-bd8b-cc31237f9812.png)  
+*Insert video by embed code*
