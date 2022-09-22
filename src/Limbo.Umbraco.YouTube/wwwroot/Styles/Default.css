@@ -3,6 +3,10 @@
 }
 .youtube-video {
   position: relative;
+  /*    button {
+        margin-left: 7px;
+        height: 32px;
+    }*/
 }
 .youtube-video.loading > div {
   opacity: 0.5;
@@ -17,16 +21,35 @@
   min-height: 110px;
   resize: vertical;
 }
-.youtube-video-input {
-  display: flex;
+.youtube-video-input button {
+  margin-top: 2px;
+  border: 0;
+  background: none;
+  padding: 0;
+  font-size: 12px;
 }
-.youtube-video button {
-  margin-left: 7px;
-  height: 32px;
+.youtube-video-input button:hover {
+  text-decoration: underline;
+}
+.youtube-video-input button + button {
+  margin-left: 10px;
+}
+.youtube-video-input h5 {
+  margin: 0 0 3px 0;
 }
 .youtube-video-details {
-  display: flex;
   margin-top: 10px;
+}
+.youtube-video-details > div {
+  display: flex;
+  border: 1px solid #e9e9eb;
+  border-radius: 3px;
+  padding: 12px 15px;
+  max-width: 800px;
+  box-sizing: border-box;
+}
+.youtube-video-details h5 {
+  margin: 15px 0 3px 0;
 }
 .youtube-video-details img {
   margin-right: 10px;
