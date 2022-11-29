@@ -5,5 +5,6 @@
     <key alias="video">Video</key>
     <key alias="refresh">Refresh current video</key>
     <key alias="urlOrEmbedCode">URL or embed code</key>
+    <key alias="urlPlaceholder">Enter the URL or embed code of the video here...</key>
   </area>
 </language>

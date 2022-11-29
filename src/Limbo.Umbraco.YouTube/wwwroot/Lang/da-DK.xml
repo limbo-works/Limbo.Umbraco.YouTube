@@ -4,6 +4,9 @@
   <area alias="limboYouTube">
     <key alias="video">Video</key>
     <key alias="refresh">Genindlæs den valgte video</key>
-    <key alias="urlOrEmbedCode">URL eller embedkode</key>
+    <key alias="urlOrEmbedCode">URL eller embed-kode</key>
+    <key alias="title">Titel</key>
+    <key alias="duration">Længde</key>
+    <key alias="urlPlaceholder">Angiv videoens URL eller embed-kode her...</key>
   </area>
 </language>

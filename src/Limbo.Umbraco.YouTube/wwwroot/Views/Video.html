@@ -1,7 +1,7 @@
 ﻿<div class="youtube-video" ng-controller="Limbo.Umbraco.YouTube.Video as vm" ng-class="{loading: vm.loading}">
     <div class="youtube-video-input">
         <h5><localize key="limboYouTube_urlOrEmbedCode">URL or embed code</localize></h5>
-        <input type="text" ng-show="!vm.embed" ng-model="vm.value.source" ng-change="vm.updated()" placeholder="limboVideo_urlPlaceholder" localize="placeholder" />
+        <input type="text" ng-show="!vm.embed" ng-model="vm.value.source" ng-change="vm.updated()" placeholder="limboYouTube_urlPlaceholder" localize="placeholder" />
         <textarea ng-show="vm.embed" ng-model="vm.value.source" ng-change="vm.updated()" rows="5"></textarea>
         <div>
             <button type="button" ng-click="vm.refresh()"><localize key="limboYouTube_refresh">Refresh current video</localize></button>
