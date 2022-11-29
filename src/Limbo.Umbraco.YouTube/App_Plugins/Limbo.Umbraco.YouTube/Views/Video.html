@@ -5,7 +5,7 @@
         <!--<button type="button" ng-click="vm.add()" class="btn btn-default">
             <i class="icon icon-search"></i>
         </button>-->
-        <button type="button" ng-click="vm.refresh()" class="btn btn-default">
+        <button type="button" ng-click="vm.refresh()" ng-disabled="!model.value.source" class="btn btn-default">
             <i class="icon icon-refresh"></i>
         </button>
     </div>
@@ -17,19 +17,19 @@
             <table>
                 <tr>
                     <th>
-                        <localize key="dreambroker_id">ID</localize>
+                        <localize key="youtube_id">ID</localize>
                     </th>
                     <td><code>{{vm.videoId}}</code></td>
                 </tr>
                 <tr>
                     <th>
-                        <localize key="dreambroker_title">Title</localize>
+                        <localize key="youtube_title">Title</localize>
                     </th>
                     <td>{{vm.title}}</td>
                 </tr>
                 <tr>
                     <th>
-                        <localize key="dreambroker_duration">Duration</localize>
+                        <localize key="youtube_duration">Duration</localize>
                     </th>
                     <td>
                         <span ng-repeat="dur in vm.duration">

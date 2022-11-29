@@ -34,9 +34,11 @@
             vm.embed = false;
             rawVideoData = null;
 
-            delete $scope.model.value.credentials;
-            delete $scope.model.value.video;
-            delete $scope.model.value.embed;
+            if ($scope.model.value) {
+                delete $scope.model.value.credentials;
+                delete $scope.model.value.video;
+                delete $scope.model.value.embed;
+            }
 
             vm.updateUI();
 
@@ -68,7 +70,7 @@
                 }, 20);
             }
         }
-        
+
         if (!rawVideoData) {
             vm.videoId = null;
             vm.title = null,
@@ -86,7 +88,7 @@
 
     function init() {
 
-        if (!$scope.model.value) {
+        if (!$scope.model.value || $scope.model.value === "null") {
             $scope.model.value = null;
             return;
         }
