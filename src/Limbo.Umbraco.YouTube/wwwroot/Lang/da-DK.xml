@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+
+<language alias="da" intName="Danish" localName="dansk" lcid="6" culture="da-DK">
+  <area alias="limboYouTube">
+    <key alias="video">Video</key>
+    <key alias="refresh">Genindlæs den valgte video</key>
+    <key alias="urlOrEmbedCode">URL eller embedkode</key>
+  </area>
+</language>

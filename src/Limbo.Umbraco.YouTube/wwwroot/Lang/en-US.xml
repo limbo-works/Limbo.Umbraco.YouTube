@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+
+<language alias="en" intName="English (US)" localName="English (US)" lcid="" culture="en-US">
+  <area alias="limboYouTube">
+    <key alias="video">Video</key>
+    <key alias="refresh">Refresh current video</key>
+    <key alias="urlOrEmbedCode">URL or embed code</key>
+  </area>
+</language>
