@@ -47,7 +47,7 @@ namespace Limbo.Umbraco.YouTube {
         /// <summary>
         /// Gets the URL of the documentation for this package.
         /// </summary>
-        public const string DocumentationUrl = "https://github.com/limbo-works/Limbo.Umbraco.YouTube#documentation";
+        public const string DocumentationUrl = "https://packages.limbo.works/limbo.umbraco.youtube/v2/docs/";
 
 
     }
