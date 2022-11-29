@@ -12,7 +12,7 @@ namespace Limbo.Umbraco.YouTube.Models.Videos {
         /// Initializes a new instance based on the specified <paramref name="thumbnail"/>.
         /// </summary>
         /// <param name="thumbnail">The video thumbnail from the YouTube API.</param>
-        public YouTubeThumbnail(YouTubeVideoThumbnail thumbnail) : base(thumbnail.JObject) { }
+        public YouTubeThumbnail(YouTubeVideoThumbnail thumbnail) : base(thumbnail.JObject!) { }
 
     }
 

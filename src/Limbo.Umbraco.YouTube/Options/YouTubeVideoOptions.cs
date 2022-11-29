@@ -91,12 +91,12 @@ namespace Limbo.Umbraco.YouTube.Options {
         /// <param name="videoId">The ID of the video.</param>
         /// <param name="query">The query string.</param>
         /// <param name="disableCookies">Wheter cookies should be disabled (until the player is activated).</param>
-        public YouTubeVideoOptions(string videoId, string query, bool? disableCookies) {
+        public YouTubeVideoOptions(string videoId, string? query, bool? disableCookies) {
             
             VideoId = videoId;
             DisableCookies = disableCookies;
 
-            IHttpQueryString q = HttpQueryString.ParseQueryString(query);
+            IHttpQueryString q = query is null ? new HttpQueryString() : HttpQueryString.Parse(query);
 
             if (q.TryGetBoolean("autoplay", out bool autoplay)) Autoplay = autoplay;
             if (q.TryGetBoolean("controls", out bool controls)) ShowControls = controls;

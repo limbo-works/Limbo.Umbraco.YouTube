@@ -64,7 +64,7 @@ namespace Limbo.Umbraco.YouTube.Services {
             // Get the video ID from the regex
             string videoId = m1.Groups[2].Value;
 
-            (_, string query) = source.Split('?');
+            (_, string? query) = source.Split('?');
 
             options = new YouTubeVideoOptions(videoId, query, cookieless);
 

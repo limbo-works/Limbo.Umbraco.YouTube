@@ -4,9 +4,9 @@ using System.Linq;
 using Limbo.Umbraco.Video.Models.Videos;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Skybrud.Essentials.Json;
+using Skybrud.Essentials.Json.Newtonsoft;
 using Skybrud.Essentials.Json.Converters.Time;
-using Skybrud.Essentials.Json.Extensions;
+using Skybrud.Essentials.Json.Newtonsoft.Extensions;
 using Skybrud.Social.Google.YouTube.Models.Videos;
 using Umbraco.Extensions;
 
@@ -54,7 +54,7 @@ namespace Limbo.Umbraco.YouTube.Models.Videos {
         /// </summary>
         [JsonProperty("duration")]
         [JsonConverter(typeof(TimeSpanSecondsConverter))]
-        public TimeSpan Duration => Data.ContentDetails?.Duration?.Value ?? TimeSpan.Zero;
+        public TimeSpan Duration => Data.ContentDetails?.Duration.Value ?? TimeSpan.Zero;
 
         TimeSpan? IVideoDetails.Duration => Duration;
 
@@ -128,7 +128,7 @@ namespace Limbo.Umbraco.YouTube.Models.Videos {
 
             Data = json.GetString("_data", x => JsonUtils.ParseJsonObject(x, YouTubeVideo.Parse))!;
 
-            YouTubeVideoThumbnails? thumbnails = Data.Snippet.Thumbnails;
+            YouTubeVideoThumbnails? thumbnails = Data.Snippet?.Thumbnails;
 
             if (thumbnails != null) {
                 Thumbnails = new[] {
