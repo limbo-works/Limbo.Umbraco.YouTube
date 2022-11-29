@@ -30,10 +30,10 @@
 
   <!-- Include NuGet dependencies -->
   <ItemGroup>
-	<PackageReference Include="Limbo.Umbraco.Video" Version="1.0.0-beta002">
-	  <ExcludeAssets>content;build;buildTransitive</ExcludeAssets>
-	</PackageReference>
-    <PackageReference Include="Skybrud.Social.Google.YouTube" Version="1.0.0-beta002" />
+    <PackageReference Include="Limbo.Umbraco.Video" Version="1.0.0">
+      <ExcludeAssets>content;build;buildTransitive</ExcludeAssets>
+    </PackageReference>
+    <PackageReference Include="Skybrud.Social.Google.YouTube" Version="1.0.0" />
     <PackageReference Include="Umbraco.Cms.Core" Version="[9.0.0,10.0)" />
     <PackageReference Include="Umbraco.Cms.Web.Website" Version="[9.0.0,10.0)" />
     <PackageReference Include="Umbraco.Cms.Web.BackOffice" Version="[9.0.0,10.0)" />

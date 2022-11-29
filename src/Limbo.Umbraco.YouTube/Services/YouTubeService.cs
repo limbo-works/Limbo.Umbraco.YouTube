@@ -6,6 +6,7 @@ using Limbo.Umbraco.YouTube.Models.Credentials;
 using Limbo.Umbraco.YouTube.Models.Settings;
 using Limbo.Umbraco.YouTube.Options;
 using Microsoft.Extensions.Options;
+using Skybrud.Essentials.Collections.Extensions;
 using Skybrud.Social.Google;
 using Skybrud.Social.Google.YouTube;
 

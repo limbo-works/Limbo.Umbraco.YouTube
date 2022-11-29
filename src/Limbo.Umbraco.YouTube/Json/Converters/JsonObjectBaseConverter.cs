@@ -1,6 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json;
-using Skybrud.Essentials.Json;
+using Skybrud.Essentials.Json.Newtonsoft;
 
 namespace Limbo.Umbraco.YouTube.Json.Converters {
 
