@@ -1,14 +1,14 @@
 ﻿<div class="youtube-video" ng-controller="Limbo.Umbraco.YouTube.Video as vm" ng-class="{loading: vm.loading}">
     <div class="youtube-video-input">
-        <h5><localize key="youtube_urlOrEmbedCode">URL or embed code</localize></h5>
-        <input type="text" ng-show="!vm.embed" ng-model="model.value.source" ng-change="vm.updated()" placeholder="limboVideo_urlPlaceholder" localize="placeholder" />
-        <textarea ng-show="vm.embed" ng-model="model.value.source" ng-change="vm.updated()" rows="5"></textarea>
+        <h5><localize key="limboYouTube_urlOrEmbedCode">URL or embed code</localize></h5>
+        <input type="text" ng-show="!vm.embed" ng-model="vm.value.source" ng-change="vm.updated()" placeholder="limboVideo_urlPlaceholder" localize="placeholder" />
+        <textarea ng-show="vm.embed" ng-model="vm.value.source" ng-change="vm.updated()" rows="5"></textarea>
         <div>
-            <button type="button" ng-click="vm.refresh()"><localize key="youtube_refresh">Refresh current video</localize></button>
+            <button type="button" ng-click="vm.refresh()"><localize key="limboYouTube_refresh">Refresh current video</localize></button>
         </div>
     </div>
-    <div class="youtube-video-details" ng-show="model.value.video">
-        <h5><localize key="youtube_video">Video</localize></h5>
+    <div class="youtube-video-details" ng-show="vm.value.video">
+        <h5><localize key="limboYouTube_video">Video</localize></h5>
         <div>
             <div class="youtube-thumbnail">
                 <img ng-src="{{vm.thumbnail.url}}" width="{{vm.thumbnail.width}}" height="{{vm.thumbnail.height}}" />
@@ -17,19 +17,19 @@
                 <table>
                     <tr>
                         <th>
-                            <localize key="youtube_id">ID</localize>
+                            <localize key="limboYouTube_id">ID</localize>
                         </th>
                         <td><code>{{vm.videoId}}</code></td>
                     </tr>
                     <tr>
                         <th>
-                            <localize key="youtube_title">Title</localize>
+                            <localize key="limboYouTube_title">Title</localize>
                         </th>
                         <td>{{vm.title}}</td>
                     </tr>
                     <tr>
                         <th>
-                            <localize key="youtube_duration">Duration</localize>
+                            <localize key="limboYouTube_duration">Duration</localize>
                         </th>
                         <td>
                             <limbo-video-duration ng-if="vm.duration" value="vm.duration"></limbo-video-duration>

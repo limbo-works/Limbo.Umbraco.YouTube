@@ -2,12 +2,14 @@
 
     const vm = this;
 
+    vm.value = null;
+
     let rawVideoData = null;
 
     // Gets information about the video of the entered URL
     vm.getVideo = function () {
 
-        const source = $scope.model.value && $scope.model.value.source ? $scope.model.value.source.trim() : null;
+        const source = vm.value && vm.value.source ? vm.value.source.trim() : null;
 
         if (source) {
 
@@ -17,12 +19,15 @@
             youTubeService.getVideo(source).then(function (res) {
 
                 // Update the credentials and embed details
-                $scope.model.value.credentials = res.data.credentials;
-                $scope.model.value.embed = res.data.embed;
+                vm.value.credentials = res.data.credentials;
+                vm.value.embed = res.data.embed;
 
                 // As Umbraco/JSON.net will corrupt any timestamps in the JSON, we need to store it as serialized
-                $scope.model.value.video = { _data: angular.toJson(res.data.video) };
+                vm.value.video = { _data: angular.toJson(res.data.video) };
                 rawVideoData = res.data.video;
+
+                // Update the property value
+                vm.sync();
 
                 vm.loading = false;
                 vm.updateUI();
@@ -34,9 +39,12 @@
             vm.embed = false;
             rawVideoData = null;
 
-            delete $scope.model.value.credentials;
-            delete $scope.model.value.video;
-            delete $scope.model.value.embed;
+            delete vm.value.credentials;
+            delete vm.value.video;
+            delete vm.value.embed;
+
+            // Update the property value
+            vm.sync();
 
             vm.updateUI();
 
@@ -44,8 +52,17 @@
 
     };
 
+    vm.sync = function() {
+
+        // In order to reset the property value, we need to set the value to an empty string rather than null as
+        // Umbraco otherwise will save a string with the value "null" instead of an actual null value
+        $scope.model.value = vm.value?.source ? vm.value : "";
+
+    };
+
     // Triggered by the UI when the user changes the URL
     vm.updated = function () {
+        vm.sync();
         vm.getVideo();
     };
 
@@ -86,7 +103,7 @@
 
     function init() {
 
-        if (!$scope.model.value) {
+        if (!$scope.model.value || $scope.model.value === "null") {
             $scope.model.value = null;
             return;
         }
@@ -94,8 +111,12 @@
         if (!$scope.model.value.video) return;
         if (!$scope.model.value.video._data) return;
 
+        // Umbraco has some an annoying behaviour when saving null values, so we need to work keep a shadow model to
+        // work around this issue
+        vm.value = $scope.model.value;
+
         // Get the Vimeo video data from the "_data" property (necessary due to Umbraco/JSON.net issue)
-        rawVideoData = angular.fromJson($scope.model.value.video._data);
+        rawVideoData = angular.fromJson(vm.value.video._data);
 
         vm.updateUI();
 
