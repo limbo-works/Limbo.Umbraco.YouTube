@@ -4,7 +4,6 @@ using Limbo.Umbraco.YouTube.Options;
 using Limbo.Umbraco.YouTube.Services;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
-using Skybrud.Essentials.AspNetCore;
 using Skybrud.Social.Google.YouTube;
 using Skybrud.Social.Google.YouTube.Options.Videos;
 using Umbraco.Cms.Web.BackOffice.Controllers;
@@ -34,7 +33,7 @@ namespace Limbo.Umbraco.YouTube.Controllers {
         public object GetVideo() {
 
             // Get the "source" parameter from either GET or POST
-            string? source = HttpContext.Request.Query.GetString("source");
+            string? source = HttpContext.Request.Query["source"];
             if (string.IsNullOrWhiteSpace(source) && HttpContext.Request.HasFormContentType) {
                 source = HttpContext.Request.Form["source"].FirstOrDefault();
             }

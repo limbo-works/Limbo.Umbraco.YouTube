@@ -33,7 +33,6 @@
   <ItemGroup>
     <PackageReference Include="Limbo.Umbraco.IconServiceFix" Version="1.0.0" />
 	  <PackageReference Include="Limbo.Umbraco.Video" Version="2.0.3" />
-    <PackageReference Include="Skybrud.Essentials.AspNetCore" Version="1.0.0-alpha008" />
     <PackageReference Include="Skybrud.Social.Google.YouTube" Version="1.0.0" />
     <PackageReference Include="Umbraco.Cms.Core" Version="10.0.0" />
     <PackageReference Include="Umbraco.Cms.Web.Website" Version="10.0.0" />
