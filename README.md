@@ -2,6 +2,10 @@
 
 This package features a property editor for inserting (via URL or embed code) a YouTube video. The property editor saves a bit of information about the video, which then will be availble in C#.
 
+
+
+<br /><br />
+
 ## Installation
 
 Install for Umbraco 10 via [NuGet](https://www.nuget.org/packages/Limbo.Umbraco.YouTube/2.0.0):
@@ -15,6 +19,10 @@ Install for Umbraco 9 via [NuGet](https://www.nuget.org/packages/Limbo.Umbraco.Y
 ```
 dotnet add package Limbo.Umbraco.YouTube --version 1.0.0
 ```
+
+
+
+<br /><br />
 
 ## Configuration
 
@@ -46,6 +54,13 @@ In order to access the YouTube API, the package needs to be configured with a se
 The API key let's this package access the YouTube API on behalf of your app/project.
 
 
+
+
+
+
+
+<br /><br />
+
 ## Screenshots
 
 ![image](https://user-images.githubusercontent.com/3634580/191851451-b3521520-53b1-48fc-9770-0fab12df719d.png)  
@@ -53,3 +68,63 @@ The API key let's this package access the YouTube API on behalf of your app/proj
 
 ![image](https://user-images.githubusercontent.com/3634580/191851581-52e346bc-b3a9-49b1-bd8b-cc31237f9812.png)  
 *Insert video by embed code*
+
+
+
+
+
+
+
+<br /><br />
+
+## Examples
+
+This package features a **Limbo YouTube Video** property editor that allows users to insert a YouTube video from either it's URL or embed code. Properties that are using this property editor then exposes an instance of `YouTubeValue` (or `null` if the property is empty).
+
+You can use the `YouTubeValue` instance like shown below:
+
+```cshtml
+@using Limbo.Umbraco.YouTube.Models.Videos
+
+@inherits UmbracoViewPage
+
+@{
+
+    // Assuming video is created as a media, get a reference to that media
+    IPublishedContent? media = Umbraco.Media(1178);
+
+    if (media is null)
+    {
+        <pre>NOPE!</pre>
+        return;
+    }
+
+    // Get the video value from the "video" property
+    YouTubeValue? video = media.Value<YouTubeValue>("video");
+
+    if (video is null)
+    {
+        <pre>NOPE!</pre>
+        return;
+    }
+
+    // Ender the embed iframe
+    @video.Embed.Html
+
+    // Render the video ID
+    <pre>@video.Details.Id</pre>
+
+    // Render other video information
+    <pre>@video.Details.Title</pre>
+    <pre>@video.Details.Duration</pre>
+    <pre>@video.Details.Description</pre>
+
+    // Render largest available thumbnail
+    YouTubeThumbnail? thumbnail = video.Details.Thumbnails.LastOrDefault();
+    if (thumbnail is not null)
+    {
+        <img src="@thumbnail.Url" width="@thumbnail.Width" height="@thumbnail.Height" />
+    }
+
+}
+```
