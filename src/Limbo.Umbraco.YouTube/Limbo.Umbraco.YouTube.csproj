@@ -32,7 +32,7 @@
   <!-- Include NuGet dependencies -->
   <ItemGroup>
     <PackageReference Include="Limbo.Umbraco.IconServiceFix" Version="1.0.0" />
-    <PackageReference Include="Limbo.Umbraco.Video" Version="2.0.3" />
+    <PackageReference Include="Limbo.Umbraco.Video" Version="2.0.4" />
     <PackageReference Include="Skybrud.Social.Google.YouTube" Version="1.0.0" />
     <PackageReference Include="Umbraco.Cms.Core" Version="[10.0.0,12.0)" />
     <PackageReference Include="Umbraco.Cms.Web.Website" Version="[10.0.0,12.0)" />
