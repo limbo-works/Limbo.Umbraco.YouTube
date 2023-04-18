@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Skybrud.Essentials.Strings.Extensions;
 using Umbraco.Cms.Core.Manifest;
 
 namespace Limbo.Umbraco.YouTube.Manifests {
@@ -10,7 +9,9 @@ namespace Limbo.Umbraco.YouTube.Manifests {
         /// <inheritdoc />
         public void Filter(List<PackageManifest> manifests) {
             manifests.Add(new PackageManifest {
-                PackageName = YouTubePackage.Alias.ToKebabCase(),
+                AllowPackageTelemetry = true,
+                PackageName = YouTubePackage.Name,
+                Version = YouTubePackage.InformationalVersion,
                 BundleOptions = BundleOptions.Independent,
                 Scripts = new[] {
                     $"/App_Plugins/{YouTubePackage.Alias}/Scripts/Services/YouTubeService.js",
