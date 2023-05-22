@@ -88,14 +88,16 @@
 
         if (!rawVideoData) {
             vm.videoId = null;
-            vm.title = null,
+            vm.title = null;
+            vm.description = null;
             vm.duration = null;
             vm.thumbnail = null;
             return;
         }
 
         vm.videoId = rawVideoData.id;
-        vm.title = rawVideoData.snippet?.title,
+        vm.title = rawVideoData.snippet?.title;
+        vm.description = rawVideoData.snippet?.description;
         vm.duration = rawVideoData.contentDetails?.duration;
         vm.thumbnail = youTubeService.getThumbnail(rawVideoData);
 
