@@ -47,6 +47,8 @@
   padding: 12px 15px;
   max-width: 800px;
   box-sizing: border-box;
+  flex-wrap: wrap;
+  gap: 20px 15px;
 }
 .youtube-video-details h5 {
   margin: 15px 0 3px 0;
@@ -70,13 +72,13 @@
 .youtube-video-details table tr + tr td {
   padding-top: 4px;
 }
+.youtube-video-info {
+  flex: 1;
+}
 .youtube-video pre {
   display: none;
   font-size: 10px;
   line-height: 12px;
-}
-.youtube-video .youtube-thumbnail + div {
-  margin-left: 10px;
 }
 .umb-editors .youtube-video-details {
   display: block;
