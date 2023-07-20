@@ -2,7 +2,7 @@
 using Limbo.Umbraco.YouTube.Options;
 using Microsoft.AspNetCore.Html;
 using Newtonsoft.Json;
-using Skybrud.Essentials.Json.Converters;
+using Skybrud.Essentials.Json.Newtonsoft.Converters;
 
 namespace Limbo.Umbraco.YouTube.Models.Videos {
 
@@ -31,7 +31,7 @@ namespace Limbo.Umbraco.YouTube.Models.Videos {
         /// </summary>
         [JsonProperty("options", NullValueHandling = NullValueHandling.Ignore)]
         public YouTubeEmbedPlayerOptions? Options { get; }
-        
+
         #endregion
 
         #region Constructors
