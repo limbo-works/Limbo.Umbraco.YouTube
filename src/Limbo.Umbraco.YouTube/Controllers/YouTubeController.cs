@@ -1,11 +1,15 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Limbo.Umbraco.YouTube.Models.Credentials;
 using Limbo.Umbraco.YouTube.Options;
 using Limbo.Umbraco.YouTube.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Linq;
 using Skybrud.Social.Google.YouTube;
+using Skybrud.Social.Google.YouTube.Models.Videos;
 using Skybrud.Social.Google.YouTube.Options.Videos;
+using Skybrud.Social.Google.YouTube.Responses.Videos;
 using Umbraco.Cms.Web.BackOffice.Controllers;
 using Umbraco.Cms.Web.Common.Attributes;
 
@@ -16,11 +20,13 @@ namespace Limbo.Umbraco.YouTube.Controllers {
     [PluginController("Limbo")]
     public class YouTubeController : UmbracoAuthorizedApiController {
 
+        private readonly ILogger<YouTubeController> _logger;
         private readonly YouTubeService _youTubeService;
 
         #region Constructors
 
-        public YouTubeController(YouTubeService youTubeService) {
+        public YouTubeController(ILogger<YouTubeController> logger, YouTubeService youTubeService) {
+            _logger = logger;
             _youTubeService = youTubeService;
         }
 
@@ -40,19 +46,30 @@ namespace Limbo.Umbraco.YouTube.Controllers {
 
             if (string.IsNullOrWhiteSpace(source)) return BadRequest("No source specified.");
 
+            // Try to get thhe YouTube video ID from "source" - which be either an embed code or a URL
             if (!_youTubeService.TryGetVideoId(source, out YouTubeVideoOptions? options)) return BadRequest("Source doesn't match a valid URL or embed code.");
 
+            // Get the first set of configured credentials (we don't currently support more than one)
             YouTubeCredentials? credentials = _youTubeService.GetCredentials().FirstOrDefault();
             if (credentials == null || !_youTubeService.TryGetHttpService(credentials, out YouTubeHttpService? http)) return BadRequest("No credentials configured for YouTube.");
 
-            var o = new YouTubeGetVideoListOptions(options!.VideoId) {
+            // Initialize the options for the request to the YouTube API
+            YouTubeGetVideoListOptions o = new(options!.VideoId) {
                 Part = YouTubeVideoParts.Snippet + YouTubeVideoParts.ContentDetails,
             };
 
-            var response = http!.Videos.GetVideos(o);
+            // Attempt to get video information from the YouTube API
+            YouTubeVideo? video;
+            try {
+                YouTubeVideoListResponse response = http!.Videos.GetVideos(o);
+                video = response.Body.Items.FirstOrDefault();
+            } catch (Exception ex) {
+                _logger.LogError(ex, "Failed retrieving video information for from source {Source}", source);
+                return BadRequest("Failed retrieving video information from the YouTube API.");
+            }
 
-            var video = response.Body.Items.FirstOrDefault();
-
+            // If the video isn't found, YouTube will return 200 OK and an empty list rather than 404 Not Found, so as
+            // this won't be caught by the try/catch statement above, we can check whether "video" is null instead
             if (video == null) {
                 return NotFound(source.Contains("<iframe") ? "A video with the specified embed code could not be found." : "A video with the specified URL could not be found.");
             }
