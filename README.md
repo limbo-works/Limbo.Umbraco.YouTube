@@ -4,7 +4,7 @@
 
 **Limbo.Umbraco.YouTube** is a package for Umbraco 10+ that features a property editor for inserting (via URL or embed code) a YouTube video. The property editor saves a bit of information about the video, which then will be availble in C#.
 
-The latest version ([`v2.x`](https://github.com/limbo-works/Limbo.Umbraco.YouTube/tree/v1/main)) supports Umbraco 10, 11 and 12, whereas older releases ([`v1.x`](https://github.com/limbo-works/Limbo.Umbraco.YouTube/tree/v1/main)) supports Umbraco 9.
+The latest version (`v2.x`) supports Umbraco 10, 11 and 12, whereas older releases (`v1.x`) supports Umbraco 9.
 
 <table>
   <tr>
