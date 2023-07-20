@@ -4,7 +4,7 @@
         <input type="text" ng-show="!vm.embed" ng-model="vm.value.source" ng-change="vm.updated()" placeholder="limboYouTube_urlPlaceholder" localize="placeholder" />
         <textarea ng-show="vm.embed" ng-model="vm.value.source" ng-change="vm.updated()" rows="5"></textarea>
         <div>
-            <button type="button" ng-click="vm.refresh()"><localize key="limboYouTube_refresh">Refresh current video</localize></button>
+            <button ng-if="vm.value.video" type="button" ng-click="vm.refresh()"><localize key="limboYouTube_refresh">Refresh current video</localize></button>
         </div>
     </div>
     <div class="youtube-video-details" ng-show="vm.value.video">
