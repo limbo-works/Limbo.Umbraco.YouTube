@@ -1,6 +1,36 @@
-# Limbo YouTube  [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE.md) [![NuGet](https://img.shields.io/nuget/v/Limbo.Umbraco.YouTube.svg)](https://www.nuget.org/packages/Limbo.Umbraco.YouTube) [![NuGet](https://img.shields.io/nuget/dt/Limbo.Umbraco.YouTube.svg)](https://www.nuget.org/packages/Limbo.Umbraco.YouTube) [![Umbraco Marketplace](https://img.shields.io/badge/umbraco-marketplace-%233544B1)](https://marketplace.umbraco.com/package/limbo.umbraco.youtube)
+# Limbo YouTube
+
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE.md) [![NuGet](https://img.shields.io/nuget/v/Limbo.Umbraco.YouTube.svg)](https://www.nuget.org/packages/Limbo.Umbraco.YouTube) [![NuGet](https://img.shields.io/nuget/dt/Limbo.Umbraco.YouTube.svg)](https://www.nuget.org/packages/Limbo.Umbraco.YouTube) [![Umbraco Marketplace](https://img.shields.io/badge/umbraco-marketplace-%233544B1)](https://marketplace.umbraco.com/package/limbo.umbraco.youtube)
 
 This package features a property editor for inserting (via URL or embed code) a YouTube video. The property editor saves a bit of information about the video, which then will be availble in C#.
+
+The latest version (`v2.x`) supports Umbraco 10, 11 and 12, whereas older releases (`v1.x`) supports Umbraco 9.
+
+<table>
+  <tr>
+    <td><strong>License:</strong></td>
+    <td><a href="./LICENSE.md"><strong>MIT License</strong></a></td>
+  </tr>
+  <tr>
+    <td><strong>Umbraco:</strong></td>
+    <td>
+      Umbraco 10, 11 and 12
+      <sub><sup>(and <a href="https://github.com/limbo-works/Limbo.Umbraco.YouTube/tree/v1/main">Umbraco 9</a>)</sup></sub>
+    </td>
+  </tr>
+  <tr>
+    <td><strong>Target Framework:</strong></td>
+    <td>
+      .NET 6
+      <sub><sup>(and <a href="https://github.com/limbo-works/Limbo.Umbraco.YouTube/tree/v1/main">.NET 5</a>)</sup></sub>
+    </td>
+  </tr>
+</table>
+
+
+
+
+
 
 
 
@@ -8,17 +38,22 @@ This package features a property editor for inserting (via URL or embed code) a 
 
 ## Installation
 
-Install for Umbraco 10+ via [NuGet](https://www.nuget.org/packages/Limbo.Umbraco.YouTube/2.0.2):
+Install for Umbraco 10+ via [**NuGet**](https://www.nuget.org/packages/Limbo.Umbraco.YouTube/2.0.3) - either via the .NET CLI:
 
 ```
-dotnet add package Limbo.Umbraco.YouTube --version 2.0.2
+dotnet add package Limbo.Umbraco.YouTube --version 2.0.3
 ```
 
-Install for Umbraco 9 via [NuGet](https://www.nuget.org/packages/Limbo.Umbraco.YouTube/1.0.0):
+or the NuGet package manager:
 
 ```
-dotnet add package Limbo.Umbraco.YouTube --version 1.0.0
+Install-Package Limbo.Umbraco.YouTube -Version 2.0.3
 ```
+
+For Umbraco 9, see the [`v1/main`](https://github.com/limbo-works/Limbo.Umbraco.YouTube/tree/v1/main) branch instead.
+
+
+
 
 
 
