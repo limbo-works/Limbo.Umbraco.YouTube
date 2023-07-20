@@ -1,4 +1,4 @@
-﻿angular.module("umbraco").controller("Limbo.Umbraco.YouTube.Video", function ($scope, $element, $timeout, youTubeService) {
+﻿angular.module("umbraco").controller("Limbo.Umbraco.YouTube.Video", function ($scope, $element, $timeout, notificationsService, youTubeService) {
 
     const vm = this;
 
@@ -6,10 +6,18 @@
 
     let rawVideoData = null;
 
+    let notification = null;
+
     // Gets information about the video of the entered URL
     vm.getVideo = function () {
 
         const source = vm.value && vm.value.source ? vm.value.source.trim() : null;
+
+        // If we already have added a notification, we make sure to remove it (to avoid stacked notifications)
+        if (notification) {
+            const index = notificationsService.getCurrent().indexOf(notification);
+            if (index >= 0) notificationsService.remove(index);
+        }
 
         if (source) {
 
@@ -31,6 +39,29 @@
 
                 vm.loading = false;
                 vm.updateUI();
+
+            }, function (res) {
+
+                vm.loading = false;
+
+                rawVideoData = null;
+
+                delete vm.value.credentials;
+                delete vm.value.video;
+                delete vm.value.embed;
+
+                // Update the property value
+                vm.sync();
+
+                vm.updateUI();
+
+                if (typeof res.data === "string") {
+                    notificationsService.error("YouTube", res.data);
+                    notification = notificationsService.getCurrent().at(-1);
+                } else {
+                    notificationsService.error("YouTube", "Failed fetching video information from YouTube.");
+                    notification = notificationsService.getCurrent().at(-1);
+                }
 
             });
 

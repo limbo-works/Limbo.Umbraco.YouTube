@@ -53,7 +53,9 @@ namespace Limbo.Umbraco.YouTube.Controllers {
 
             var video = response.Body.Items.FirstOrDefault();
 
-            if (video == null) return NotFound("Video not found.");
+            if (video == null) {
+                return NotFound(source.Contains("<iframe") ? "A video with the specified embed code could not be found." : "A video with the specified URL could not be found.");
+            }
 
             JObject embed = JObject.FromObject(options);
             embed.Remove("videoId");
@@ -67,7 +69,7 @@ namespace Limbo.Umbraco.YouTube.Controllers {
             });
 
             if (!embed.Properties().Any()) json.Remove("embed");
-            
+
             return json;
 
         }

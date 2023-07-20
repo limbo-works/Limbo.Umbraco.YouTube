@@ -15,6 +15,8 @@
             method: "POST",
             url: `${umbracoPath}/backoffice/Limbo/YouTube/GetVideo`,
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            config: { umbIgnoreErrors: true },
+            umbIgnoreErrors: true,
             data: $.param(data)
         });
 
@@ -43,7 +45,7 @@
         return null;
 
     }
-    
+
     return {
         getVideo: getVideo,
         getThumbnail: getThumbnail
