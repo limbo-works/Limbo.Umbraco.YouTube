@@ -32,7 +32,13 @@ namespace Limbo.Umbraco.YouTube.PropertyEditors {
         }
 
         public override PropertyCacheLevel GetPropertyCacheLevel(IPublishedPropertyType propertyType) {
-            return PropertyCacheLevel.Element;
+
+            // Default to "Elements" if configuration doesn't match (probably wouldn't happen)
+            if (propertyType.DataType.Configuration is not YouTubeConfiguration config) return PropertyCacheLevel.Elements;
+
+            // Return the configured cachwe level (or "Elements" if not specified)
+            return config.CacheLevel ?? PropertyCacheLevel.Elements;
+
         }
 
     }
