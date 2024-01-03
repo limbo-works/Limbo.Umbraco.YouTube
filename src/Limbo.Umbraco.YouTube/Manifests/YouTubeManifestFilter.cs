@@ -17,6 +17,7 @@ namespace Limbo.Umbraco.YouTube.Manifests {
                 Version = YouTubePackage.InformationalVersion,
                 BundleOptions = BundleOptions.Independent,
                 Scripts = new[] {
+                    $"/App_Plugins/{YouTubePackage.Alias}/Scripts/Controllers/CacheLevel.js",
                     $"/App_Plugins/{YouTubePackage.Alias}/Scripts/Services/YouTubeService.js",
                     $"/App_Plugins/{YouTubePackage.Alias}/Scripts/Controllers/Video.js"
                 },
