@@ -38,16 +38,16 @@ The latest version (`v2.x`) supports Umbraco 10, 11 and 12, whereas older releas
 
 ## Installation
 
-he package targets Umbraco 10+ and is available via [**NuGet**](https://www.nuget.org/packages/Limbo.Umbraco.YouTube/2.0.3). To install the package, you can use either .NET CLI:
+he package targets Umbraco 10+ and is available via [**NuGet**](https://www.nuget.org/packages/Limbo.Umbraco.YouTube/2.0.4). To install the package, you can use either .NET CLI:
 
 ```
-dotnet add package Limbo.Umbraco.YouTube --version 2.0.3
+dotnet add package Limbo.Umbraco.YouTube --version 2.0.4
 ```
 
 or the NuGet package manager:
 
 ```
-Install-Package Limbo.Umbraco.YouTube -Version 2.0.3
+Install-Package Limbo.Umbraco.YouTube -Version 2.0.4
 ```
 
 For Umbraco 9, see the [`v1/main`](https://github.com/limbo-works/Limbo.Umbraco.YouTube/tree/v1/main) branch instead.
