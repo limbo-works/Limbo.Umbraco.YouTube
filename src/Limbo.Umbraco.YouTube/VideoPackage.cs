@@ -27,7 +27,9 @@ public class YouTubePackage {
     /// <summary>
     /// Gets the informational version of the package.
     /// </summary>
-    public static readonly string InformationalVersion = ReflectionUtils.GetInformationalVersion(typeof(YouTubePackage));
+    public static readonly string InformationalVersion = ReflectionUtils
+        .GetInformationalVersion(typeof(YouTubePackage))
+        .Split('+')[0];
 
     /// <summary>
     /// Gets the semantic version of the package.
