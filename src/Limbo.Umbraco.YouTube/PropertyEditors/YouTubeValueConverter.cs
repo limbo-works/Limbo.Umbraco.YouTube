@@ -24,7 +24,7 @@ namespace Limbo.Umbraco.YouTube.PropertyEditors {
         }
 
         public override object? ConvertIntermediateToObject(IPublishedElement owner, IPublishedPropertyType propertyType, PropertyCacheLevel referenceCacheLevel, object? inter, bool preview) {
-            return YouTubeValue.Parse(inter as JObject);
+            return YouTubeValue.Parse(inter as JObject, propertyType.DataType.Configuration as YouTubeConfiguration);
         }
 
         public override Type GetPropertyValueType(IPublishedPropertyType propertyType) {

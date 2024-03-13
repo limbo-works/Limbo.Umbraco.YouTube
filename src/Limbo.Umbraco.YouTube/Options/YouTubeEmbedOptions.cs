@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 using Skybrud.Essentials.Common;
 
 namespace Limbo.Umbraco.YouTube.Options {
-    
+
     /// <summary>
     /// Class representing the embed options for a Vimeo video
     /// </summary>
@@ -97,7 +97,7 @@ namespace Limbo.Umbraco.YouTube.Options {
             if (string.IsNullOrWhiteSpace(Id)) throw new PropertyNotSetException(nameof(Id));
 
             string url = (Player ?? new YouTubeEmbedPlayerOptions()).GetEmbedUrl(Id);
-            
+
             string title = string.IsNullOrWhiteSpace(Title) ? "Vimeo video player" : Title;
 
             string html = $"<iframe width=\"{width}\" height=\"{height}\" src=\"{HttpUtility.HtmlAttributeEncode(url)}\" title=\"{HttpUtility.HtmlAttributeEncode(title)}\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>";

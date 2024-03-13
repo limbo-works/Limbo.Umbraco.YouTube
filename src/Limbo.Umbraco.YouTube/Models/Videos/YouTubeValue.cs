@@ -28,6 +28,12 @@ namespace Limbo.Umbraco.YouTube.Models.Videos {
         public YouTubeVideoProvider Provider { get; }
 
         /// <summary>
+        /// Gets the embed parameters specified for the video.
+        /// </summary>
+        [JsonIgnore]
+        public YouTubeVideoParameters Parameters { get; }
+
+        /// <summary>
         /// Gets the details about the picked video.
         /// </summary>
         [JsonProperty("details")]
@@ -49,11 +55,12 @@ namespace Limbo.Umbraco.YouTube.Models.Videos {
 
         #region Constructors
 
-        private YouTubeValue(JObject json) {
+        private YouTubeValue(JObject json, YouTubeConfiguration? config) {
             Source = json.GetString("source")!;
             Provider = YouTubeVideoProvider.Default;
+            Parameters = YouTubeVideoParameters.Parse(json.GetObject("parameters") ?? new JObject());
             Details = json.GetObject("video", YouTubeVideoDetails.Parse)!;
-            Embed = new YouTubeEmbed(Details);
+            Embed = new YouTubeEmbed(Details, Parameters, config);
         }
 
         #endregion
@@ -64,10 +71,11 @@ namespace Limbo.Umbraco.YouTube.Models.Videos {
         /// Parses the specified <paramref name="json"/> object into an instance of <see cref="YouTubeValue"/>.
         /// </summary>
         /// <param name="json">An instance of <see cref="JObject"/> representing the value.</param>
+        /// <param name="config">The data type configuration.</param>
         /// <returns>An instance of <see cref="YouTubeValue"/> if <paramref name="json"/> is not null; otherwise, <see langword="null"/>.</returns>
         [return: NotNullIfNotNull("json")]
-        public static YouTubeValue? Parse(JObject? json) {
-            return json == null ? null : new YouTubeValue(json);
+        public static YouTubeValue? Parse(JObject? json, YouTubeConfiguration? config) {
+            return json == null ? null : new YouTubeValue(json, config);
         }
 
         #endregion

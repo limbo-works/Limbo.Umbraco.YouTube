@@ -77,10 +77,20 @@ namespace Limbo.Umbraco.YouTube.Controllers {
             JObject embed = JObject.FromObject(options);
             embed.Remove("videoId");
 
+            JObject parameters = new();
+            if (options.Autoplay is not null) parameters.Add("autoplay", options.Autoplay.Value);
+            if (options.Loop is not null) parameters.Add("loop", options.Loop.Value);
+            if (options.DisableCookies is not null) parameters.Add("cookieless", options.DisableCookies.Value);
+            if (options.ShowControls is not null) parameters.Add("controls", options.ShowControls.Value);
+            if (options.ShowRelated is not null) parameters.Add("rel", options.ShowRelated.Value);
+            if (options.Start is not null) parameters.Add("start", (int) options.Start.Value.TotalSeconds);
+            if (options.End is not null) parameters.Add("end", (int) options.End.Value.TotalSeconds);
+
             JObject json = JObject.FromObject(new {
                 credentials = new {
                     key = credentials.Key
                 },
+                parameters,
                 video = video.JObject,
                 embed
             });

@@ -28,7 +28,7 @@
 
                 // Update the credentials and embed details
                 vm.value.credentials = res.data.credentials;
-                vm.value.embed = res.data.embed;
+                vm.value.parameters = res.data.parameters;
 
                 // As Umbraco/JSON.net will corrupt any timestamps in the JSON, we need to store it as serialized
                 vm.value.video = { _data: angular.toJson(res.data.video) };
@@ -47,6 +47,7 @@
                 rawVideoData = null;
 
                 delete vm.value.credentials;
+                delete vm.value.parameters;
                 delete vm.value.video;
                 delete vm.value.embed;
 

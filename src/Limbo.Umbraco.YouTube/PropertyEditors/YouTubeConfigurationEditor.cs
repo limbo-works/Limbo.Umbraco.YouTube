@@ -8,7 +8,20 @@ namespace Limbo.Umbraco.YouTube.PropertyEditors {
 
     public class YouTubeConfigurationEditor : ConfigurationEditor<YouTubeConfiguration> {
 
-        public YouTubeConfigurationEditor(IIOHelper ioHelper, IEditorConfigurationParser editorConfigurationParser) : base(ioHelper, editorConfigurationParser) { }
+        public YouTubeConfigurationEditor(IIOHelper ioHelper, IEditorConfigurationParser editorConfigurationParser) : base(ioHelper, editorConfigurationParser) {
+
+            foreach (ConfigurationField field in Fields) {
+
+                if (field.View is not null) {
+                    field.View = field.View
+                        .Replace("{version}", YouTubePackage.InformationalVersion)
+                        .Replace("{alias}", field.Key);
+
+                }
+
+            }
+
+        }
 
     }
 

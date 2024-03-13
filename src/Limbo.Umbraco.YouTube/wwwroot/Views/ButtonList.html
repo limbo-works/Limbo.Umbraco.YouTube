@@ -1,0 +1,10 @@
+﻿<div class="limbo-youtube" ng-controller="Limbo.Umbraco.YouTube.ButtonList as vm">
+    <div class="button-list">
+        <button type="button"
+                ng-repeat="o in vm.options"
+                ng-class="{'--active': o.alias == model.value}"
+                ng-click="vm.select(o)">
+            {{o.label}}
+        </button>
+    </div>
+</div>

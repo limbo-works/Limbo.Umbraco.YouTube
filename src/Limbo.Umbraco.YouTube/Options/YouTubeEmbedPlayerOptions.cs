@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 using Skybrud.Essentials.Http.Collections;
 
 namespace Limbo.Umbraco.YouTube.Options {
-    
+
     /// <summary>
     /// Class representing the options for the YouTube video player.
     /// </summary>

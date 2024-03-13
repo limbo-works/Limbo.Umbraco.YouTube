@@ -96,12 +96,12 @@
   margin-top: 10px;
   margin-left: 0;
 }
-.youtube-video .button-list {
+.limbo-youtube .button-list {
   display: flex;
   flex-wrap: wrap;
   gap: 7px;
 }
-.youtube-video .button-list > button {
+.limbo-youtube .button-list > button {
   appearance: none;
   display: inline-block;
   -webkit-appearance: none;
@@ -118,11 +118,11 @@
   position: relative;
   cursor: pointer;
 }
-.youtube-video .button-list > button:hover {
+.limbo-youtube .button-list > button:hover {
   background-color: rgba(216, 215, 217, 0.3);
   color: #2152a3;
 }
-.youtube-video .button-list > button.--active {
+.limbo-youtube .button-list > button.--active {
   background-color: #F5C1BC;
   color: #1A2650;
 }
