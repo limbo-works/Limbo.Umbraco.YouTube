@@ -2,19 +2,17 @@
 using Limbo.Umbraco.YouTube.Models.Credentials;
 using Umbraco.Cms.Core.Configuration.Models;
 
-namespace Limbo.Umbraco.YouTube.Models.Settings {
+namespace Limbo.Umbraco.YouTube.Models.Settings;
+
+/// <summary>
+/// Class representing the settings for this package.
+/// </summary>
+[UmbracoOptions("Limbo:YouTube", BindNonPublicProperties = true)]
+public class YouTubeSettings {
 
     /// <summary>
-    /// Class representing the settings for this package.
+    /// Gets a collection of the credentials configured for YouTube.
     /// </summary>
-    [UmbracoOptions("Limbo:YouTube", BindNonPublicProperties = true)]
-    public class YouTubeSettings {
-
-        /// <summary>
-        /// Gets a collection of the credentials configured for YouTube.
-        /// </summary>
-        public IReadOnlyList<YouTubeCredentials> Credentials { get; internal set; } = null!;
-
-    }
+    public IReadOnlyList<YouTubeCredentials> Credentials { get; internal set; } = null!;
 
 }

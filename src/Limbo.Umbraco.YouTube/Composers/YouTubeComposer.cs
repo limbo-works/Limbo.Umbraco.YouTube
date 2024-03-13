@@ -8,19 +8,17 @@ using Umbraco.Cms.Core.DependencyInjection;
 
 #pragma warning disable 1591
 
-namespace Limbo.Umbraco.YouTube.Composers {
+namespace Limbo.Umbraco.YouTube.Composers;
 
-    public class YouTubeComposer : IComposer {
+public class YouTubeComposer : IComposer {
 
-        public void Compose(IUmbracoBuilder builder) {
+    public void Compose(IUmbracoBuilder builder) {
 
-            builder.Services.AddTransient<YouTubeService>();
-            
-            builder.ManifestFilters().Append<YouTubeManifestFilter>();
+        builder.Services.AddTransient<YouTubeService>();
 
-            builder.AddUmbracoOptions<YouTubeSettings>();
+        builder.ManifestFilters().Append<YouTubeManifestFilter>();
 
-        }
+        builder.AddUmbracoOptions<YouTubeSettings>();
 
     }
 
