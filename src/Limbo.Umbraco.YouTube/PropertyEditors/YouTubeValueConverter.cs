@@ -2,6 +2,7 @@
 using Limbo.Umbraco.YouTube.Models.Videos;
 using Newtonsoft.Json.Linq;
 using Skybrud.Essentials.Json.Newtonsoft;
+using Skybrud.Essentials.Json.Newtonsoft.Extensions;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Core.PropertyEditors;
 using Umbraco.Extensions;
@@ -24,7 +25,8 @@ public class YouTubeValueConverter : PropertyValueConverterBase {
     }
 
     public override object? ConvertIntermediateToObject(IPublishedElement owner, IPublishedPropertyType propertyType, PropertyCacheLevel referenceCacheLevel, object? inter, bool preview) {
-        return YouTubeValue.Parse(inter as JObject, propertyType.DataType.Configuration as YouTubeConfiguration);
+        if (inter is not JObject json || json.GetObject("video") is null) return null;
+        return YouTubeValue.Parse(json, propertyType.DataType.Configuration as YouTubeConfiguration);
     }
 
     public override Type GetPropertyValueType(IPublishedPropertyType propertyType) {
