@@ -1,7 +1,7 @@
 ﻿using System;
-using Limbo.Umbraco.YouTube.Json.Converters;
 using Newtonsoft.Json;
 using Skybrud.Essentials.Http.Collections;
+using Skybrud.Essentials.Json.Newtonsoft.Converters.Time;
 
 namespace Limbo.Umbraco.YouTube.Options;
 
@@ -63,14 +63,14 @@ public class YouTubeVideoOptions {
     /// keyframe at or before the time that you specify.
     /// </summary>
     [JsonProperty("start", NullValueHandling = NullValueHandling.Ignore)]
-    [JsonConverter(typeof(TimeSpanSecondsConverter))]
+    [JsonConverter(typeof(TimeSpanConverter))]
     public TimeSpan? Start { get; }
 
     /// <summary>
     /// Gets the time, from the start of the video, when the player should stop playing the video.
     /// </summary>
     [JsonProperty("end", NullValueHandling = NullValueHandling.Ignore)]
-    [JsonConverter(typeof(TimeSpanSecondsConverter))]
+    [JsonConverter(typeof(TimeSpanConverter))]
     public TimeSpan? End { get; }
 
     /// <summary>
