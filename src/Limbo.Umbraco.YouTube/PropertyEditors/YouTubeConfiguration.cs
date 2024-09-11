@@ -9,7 +9,9 @@ public class YouTubeConfiguration {
     /// <summary>
     /// Gets or sets the property cache level of the underlying property value converter. Defaults to <see cref="PropertyCacheLevel.Elements"/> if not specified.
     /// </summary>
-    [ConfigurationField("cacheLevel", "Cache Level", "/App_Plugins/Limbo.Umbraco.Tables/Views/CacheLevel.html", Description = "Select the cache level of the underlying property value converter.")]
+    [ConfigurationField("cacheLevel", "Cache Level",
+        $"/App_Plugins/{YouTubePackage.Alias}/Views/CacheLevel.html",
+        Description = "Select the cache level of the underlying property value converter.")]
     public PropertyCacheLevel? CacheLevel { get; set; }
 
     /// <summary>

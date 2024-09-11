@@ -40,7 +40,7 @@ public class YouTubeVideoParameters {
     public bool? ShowRelated { get; set; }
 
     /// <summary>
-    /// Gets or sets or sets whether privacy-enhached mode should be enabled. When you turn on privacy-enhanced mode,
+    /// Gets or sets whether privacy-enhached mode should be enabled. When you turn on privacy-enhanced mode,
     /// YouTube won't store information about visitors on your website unless they play the video.
     /// </summary>
     [JsonProperty("cookieless", DefaultValueHandling = DefaultValueHandling.Ignore)]
