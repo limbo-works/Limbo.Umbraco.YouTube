@@ -120,7 +120,7 @@ The API key let's this package access the YouTube API on behalf of your app/proj
 
 ## Examples
 
-This package features a **Limbo YouTube Video** property editor that allows users to insert a YouTube video from either it's URL or embed code. Properties that are using this property editor then exposes an instance of `YouTubeValue` (or `null` if the property is empty).
+This package features a **Limbo YouTube Video** property editor that allows users to insert a YouTube video from either it's URL or embed code. Properties that are using this property editor then exposes an instance of `YouTubeVideoValue` (or `null` if the property is empty).
 
 You can use the `YouTubeValue` instance like shown below:
 
@@ -141,7 +141,7 @@ You can use the `YouTubeValue` instance like shown below:
     }
 
     // Get the video value from the "video" property
-    YouTubeValue? video = media.Value<YouTubeValue>("video");
+    YouTubeVideoValue? video = media.Value<YouTubeVideoValue>("video");
 
     if (video is null)
     {
