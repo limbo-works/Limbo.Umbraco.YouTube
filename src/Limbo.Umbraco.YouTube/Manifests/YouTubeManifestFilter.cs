@@ -16,15 +16,15 @@ public class YouTubeManifestFilter : IManifestFilter {
             PackageName = YouTubePackage.Name,
             Version = YouTubePackage.InformationalVersion,
             BundleOptions = BundleOptions.Independent,
-            Scripts = new[] {
+            Scripts = [
                 $"/App_Plugins/{YouTubePackage.Alias}/Scripts/Controllers/CacheLevel.js",
                 $"/App_Plugins/{YouTubePackage.Alias}/Scripts/Services/YouTubeService.js",
                 $"/App_Plugins/{YouTubePackage.Alias}/Scripts/Controllers/ButtonList.js",
                 $"/App_Plugins/{YouTubePackage.Alias}/Scripts/Controllers/Video.js"
-            },
-            Stylesheets = new [] {
+            ],
+            Stylesheets = [
                 $"/App_Plugins/{YouTubePackage.Alias}/Styles/Default.css"
-            }
+            ]
         };
 
         // The "PackageId" property isn't available prior to Umbraco 12, and since the package is build against
