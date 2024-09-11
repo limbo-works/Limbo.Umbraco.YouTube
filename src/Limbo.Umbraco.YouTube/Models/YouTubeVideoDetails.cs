@@ -32,7 +32,7 @@ public class YouTubeVideoDetails : IVideoDetails {
     public string Id => Data.Id;
 
     /// <summary>
-    /// Gets the Vimeo URL of the video.
+    /// Gets the YouTube URL of the video.
     /// </summary>
     [JsonProperty("url")]
     public string Url => $"https://www.youtube.com/watch?v={Id}";

@@ -152,7 +152,7 @@
         // work around this issue
         vm.value = $scope.model.value;
 
-        // Get the Vimeo video data from the "_data" property (necessary due to Umbraco/JSON.net issue)
+        // Get the YouTube video data from the "_data" property (necessary due to Umbraco/JSON.net issue)
         rawVideoData = angular.fromJson(vm.value.video._data);
 
         vm.updateUI();

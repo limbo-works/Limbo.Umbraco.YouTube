@@ -7,7 +7,7 @@ using Skybrud.Essentials.Common;
 namespace Limbo.Umbraco.YouTube.Options;
 
 /// <summary>
-/// Class representing the embed options for a Vimeo video
+/// Class representing the embed options for a YouTube video
 /// </summary>
 public class YouTubeEmbedOptions {
 
@@ -46,7 +46,7 @@ public class YouTubeEmbedOptions {
     /// <summary>
     /// Initializes a new instance based on the specified <paramref name="video"/>.
     /// </summary>
-    /// <param name="video">The Vimeo video.</param>
+    /// <param name="video">The YouTube video.</param>
     public YouTubeEmbedOptions(YouTubeVideoDetails video) {
         Id = video.Id;
         Title = video.Snippet?.Title;
@@ -55,7 +55,7 @@ public class YouTubeEmbedOptions {
     /// <summary>
     /// Initializes a new instance based on the specified <paramref name="video"/>.
     /// </summary>
-    /// <param name="video">The Vimeo video.</param>
+    /// <param name="video">The YouTube video.</param>
     /// <param name="player">The options for the YouTube video player.</param>
     public YouTubeEmbedOptions(YouTubeVideoDetails video, YouTubeEmbedPlayerOptions player) {
         Id = video.Id;
@@ -98,7 +98,7 @@ public class YouTubeEmbedOptions {
 
         string url = (Player ?? new YouTubeEmbedPlayerOptions()).GetEmbedUrl(Id);
 
-        string title = string.IsNullOrWhiteSpace(Title) ? "Vimeo video player" : Title;
+        string title = string.IsNullOrWhiteSpace(Title) ? "YouTube video player" : Title;
 
         string html = $"<iframe width=\"{width}\" height=\"{height}\" src=\"{HttpUtility.HtmlAttributeEncode(url)}\" title=\"{HttpUtility.HtmlAttributeEncode(title)}\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>";
 
