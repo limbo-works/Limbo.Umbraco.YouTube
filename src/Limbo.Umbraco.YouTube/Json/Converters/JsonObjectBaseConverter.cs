@@ -24,7 +24,7 @@ public class JsonObjectBaseConverter : JsonConverter {
                 return;
             }
             default:
-                throw new Exception("Unsupported type: " + value.GetType());
+                throw new Exception($"Unsupported type: {value.GetType()}");
         }
     }
 

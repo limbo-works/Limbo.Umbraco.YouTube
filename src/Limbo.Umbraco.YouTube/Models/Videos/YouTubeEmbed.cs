@@ -33,18 +33,34 @@ public class YouTubeEmbed : IVideoEmbed {
     [JsonProperty("loop", NullValueHandling = NullValueHandling.Ignore)]
     public bool? Loop { get; }
 
+    /// <summary>
+    /// Gets whether the player controls should be visible.
+    /// </summary>
     [JsonProperty("controls", NullValueHandling = NullValueHandling.Ignore)]
     public bool? ShowControls { get; }
 
+    /// <summary>
+    /// Gets whether the player should show related videos once the video has finished playing.
+    /// </summary>
     [JsonProperty("rel", NullValueHandling = NullValueHandling.Ignore)]
     public bool? ShowRelated { get; }
 
+    /// <summary>
+    /// Gets whether the embed code should use a cookieless player. Notice that this doesn't entirely disable cookies,
+    /// but the player won't set any cookies until the user starts the video.
+    /// </summary>
     [JsonProperty("cookieless", NullValueHandling = NullValueHandling.Ignore)]
     public bool? DisableCookies { get; }
 
+    /// <summary>
+    /// Gets the the time of the video that the player should start playing at, if any.
+    /// </summary>
     [JsonProperty("start", NullValueHandling = NullValueHandling.Ignore)]
     public string? Start { get; }
 
+    /// <summary>
+    /// Gets the the time of the video that the player should stop at, if any.
+    /// </summary>
     [JsonProperty("end", NullValueHandling = NullValueHandling.Ignore)]
     public string? End { get; }
 
@@ -55,7 +71,10 @@ public class YouTubeEmbed : IVideoEmbed {
     [JsonConverter(typeof(StringJsonConverter))]
     public IHtmlContent Html { get; }
 
-
+    /// <summary>
+    /// Gets the property editor configuration, if any.
+    /// </summary>
+    [JsonIgnore]
     public YouTubeConfiguration? Config { get; }
 
     #endregion

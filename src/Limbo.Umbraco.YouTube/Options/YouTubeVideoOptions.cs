@@ -1,5 +1,4 @@
 ﻿using System;
-using Limbo.Umbraco.YouTube.Extensions;
 using Limbo.Umbraco.YouTube.Json.Converters;
 using Newtonsoft.Json;
 using Skybrud.Essentials.Http.Collections;
@@ -90,7 +89,7 @@ public class YouTubeVideoOptions {
     /// </summary>
     /// <param name="videoId">The ID of the video.</param>
     /// <param name="query">The query string.</param>
-    /// <param name="disableCookies">Wheter cookies should be disabled (until the player is activated).</param>
+    /// <param name="disableCookies">Whether cookies should be disabled (until the player is activated).</param>
     public YouTubeVideoOptions(string videoId, string? query, bool? disableCookies) {
 
         VideoId = videoId;

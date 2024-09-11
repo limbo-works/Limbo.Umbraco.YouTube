@@ -51,5 +51,4 @@ public class YouTubePackage {
     /// </summary>
     public const string DocumentationUrl = "https://packages.limbo.works/limbo.umbraco.youtube/v2/docs/";
 
-
 }

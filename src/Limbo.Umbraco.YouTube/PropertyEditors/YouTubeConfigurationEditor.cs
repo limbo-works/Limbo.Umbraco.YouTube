@@ -16,7 +16,6 @@ public class YouTubeConfigurationEditor : ConfigurationEditor<YouTubeConfigurati
                 field.View = field.View
                     .Replace("{version}", YouTubePackage.InformationalVersion)
                     .Replace("{alias}", field.Key);
-
             }
 
         }
