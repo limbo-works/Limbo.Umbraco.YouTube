@@ -1,5 +1,5 @@
 ﻿using System.Web;
-using Limbo.Umbraco.YouTube.Models.Videos;
+using Limbo.Umbraco.YouTube.Models;
 using Microsoft.AspNetCore.Html;
 using Newtonsoft.Json;
 using Skybrud.Essentials.Common;

@@ -6,9 +6,9 @@ using Umbraco.Cms.Core.Services;
 
 namespace Limbo.Umbraco.YouTube.PropertyEditors;
 
-public class YouTubeConfigurationEditor : ConfigurationEditor<YouTubeConfiguration> {
+public class YouTubeVideoConfigurationEditor : ConfigurationEditor<YouTubeVideoConfiguration> {
 
-    public YouTubeConfigurationEditor(IIOHelper ioHelper, IEditorConfigurationParser editorConfigurationParser) : base(ioHelper, editorConfigurationParser) {
+    public YouTubeVideoConfigurationEditor(IIOHelper ioHelper, IEditorConfigurationParser editorConfigurationParser) : base(ioHelper, editorConfigurationParser) {
 
         foreach (ConfigurationField field in Fields) {
 

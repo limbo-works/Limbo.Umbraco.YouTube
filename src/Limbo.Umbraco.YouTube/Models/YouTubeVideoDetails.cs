@@ -10,7 +10,7 @@ using Skybrud.Essentials.Json.Newtonsoft.Extensions;
 using Skybrud.Social.Google.YouTube.Models.Videos;
 using Umbraco.Extensions;
 
-namespace Limbo.Umbraco.YouTube.Models.Videos;
+namespace Limbo.Umbraco.YouTube.Models;
 
 /// <summary>
 /// Class with details about a YouTube video.

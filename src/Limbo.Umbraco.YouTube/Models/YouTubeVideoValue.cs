@@ -6,12 +6,12 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Skybrud.Essentials.Json.Extensions;
 
-namespace Limbo.Umbraco.YouTube.Models.Videos;
+namespace Limbo.Umbraco.YouTube.Models;
 
 /// <summary>
-/// Class representing the value of the <see cref="YouTubeEditor"/> property editor.
+/// Class representing the value of the <see cref="YouTubeVideoEditor"/> property editor.
 /// </summary>
-public class YouTubeValue : IVideoValue {
+public class YouTubeVideoValue : IVideoValue {
 
     #region Properties
 
@@ -55,7 +55,7 @@ public class YouTubeValue : IVideoValue {
 
     #region Constructors
 
-    private YouTubeValue(JObject json, YouTubeConfiguration? config) {
+    private YouTubeVideoValue(JObject json, YouTubeVideoConfiguration? config) {
         Source = json.GetString("source")!;
         Provider = YouTubeVideoProvider.Default;
         Parameters = YouTubeVideoParameters.Parse(json.GetObject("parameters") ?? new JObject());
@@ -68,14 +68,14 @@ public class YouTubeValue : IVideoValue {
     #region Static methods
 
     /// <summary>
-    /// Parses the specified <paramref name="json"/> object into an instance of <see cref="YouTubeValue"/>.
+    /// Parses the specified <paramref name="json"/> object into an instance of <see cref="YouTubeVideoValue"/>.
     /// </summary>
     /// <param name="json">An instance of <see cref="JObject"/> representing the value.</param>
     /// <param name="config">The data type configuration.</param>
-    /// <returns>An instance of <see cref="YouTubeValue"/> if <paramref name="json"/> is not null; otherwise, <see langword="null"/>.</returns>
+    /// <returns>An instance of <see cref="YouTubeVideoValue"/> if <paramref name="json"/> is not null; otherwise, <see langword="null"/>.</returns>
     [return: NotNullIfNotNull("json")]
-    public static YouTubeValue? Parse(JObject? json, YouTubeConfiguration? config) {
-        return json == null ? null : new YouTubeValue(json, config);
+    public static YouTubeVideoValue? Parse(JObject? json, YouTubeVideoConfiguration? config) {
+        return json == null ? null : new YouTubeVideoValue(json, config);
     }
 
     #endregion

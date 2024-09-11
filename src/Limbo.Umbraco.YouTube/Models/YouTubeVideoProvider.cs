@@ -1,6 +1,6 @@
 ﻿using Limbo.Umbraco.Video.Models.Providers;
 
-namespace Limbo.Umbraco.YouTube.Models.Videos;
+namespace Limbo.Umbraco.YouTube.Models;
 
 /// <summary>
 /// Class with limited information about a video provider.

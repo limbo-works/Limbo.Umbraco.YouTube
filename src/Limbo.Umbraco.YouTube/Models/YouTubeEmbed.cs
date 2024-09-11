@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Html;
 using Newtonsoft.Json;
 using Skybrud.Essentials.Json.Newtonsoft.Converters;
 
-namespace Limbo.Umbraco.YouTube.Models.Videos;
+namespace Limbo.Umbraco.YouTube.Models;
 
 /// <summary>
 /// Class representing the embed options of the video.
@@ -53,13 +53,13 @@ public class YouTubeEmbed : IVideoEmbed {
     public bool DisableCookies { get; }
 
     /// <summary>
-    /// Gets the the time of the video that the player should start playing at, if any.
+    /// Gets the time of the video that the player should start playing at, if any.
     /// </summary>
     [JsonProperty("start")]
     public string? Start { get; }
 
     /// <summary>
-    /// Gets the the time of the video that the player should stop at, if any.
+    /// Gets the time of the video that the player should stop at, if any.
     /// </summary>
     [JsonProperty("end")]
     public string? End { get; }
@@ -75,13 +75,13 @@ public class YouTubeEmbed : IVideoEmbed {
     /// Gets the property editor configuration, if any.
     /// </summary>
     [JsonIgnore]
-    public YouTubeConfiguration? Config { get; }
+    public YouTubeVideoConfiguration? Config { get; }
 
     #endregion
 
     #region Constructors
 
-    internal YouTubeEmbed(YouTubeVideoDetails video, YouTubeVideoParameters parameters, YouTubeConfiguration? config) {
+    internal YouTubeEmbed(YouTubeVideoDetails video, YouTubeVideoParameters parameters, YouTubeVideoConfiguration? config) {
 
         Config = config;
 

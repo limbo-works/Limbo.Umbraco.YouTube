@@ -4,7 +4,7 @@
 
 namespace Limbo.Umbraco.YouTube.PropertyEditors;
 
-public class YouTubeConfiguration {
+public class YouTubeVideoConfiguration {
 
     /// <summary>
     /// Gets or sets the property cache level of the underlying property value converter. Defaults to <see cref="PropertyCacheLevel.Elements"/> if not specified.
