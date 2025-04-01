@@ -8,7 +8,7 @@ using Skybrud.Essentials.Json.Newtonsoft.Extensions;
 namespace Limbo.Umbraco.YouTube.Models;
 
 /// <summary>
-/// Class representing the parameters parsed from the source field of the <see cref="YouTubeVideoEditor"/> property editor.
+/// Class representing the parameters parsed from the source field of the <see cref="YouTubeVideoPropertyEditor"/> property editor.
 /// </summary>
 public class YouTubeVideoParameters {
 

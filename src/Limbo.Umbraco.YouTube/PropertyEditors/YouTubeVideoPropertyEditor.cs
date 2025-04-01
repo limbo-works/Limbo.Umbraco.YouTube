@@ -11,7 +11,7 @@ namespace Limbo.Umbraco.YouTube.PropertyEditors;
 /// Represents a block list property editor.
 /// </summary>
 [DataEditor(EditorAlias, EditorName, EditorView, ValueType = ValueTypes.Json, Group = "Limbo", Icon = EditorIcon)]
-public class YouTubeVideoEditor : DataEditor {
+public class YouTubeVideoPropertyEditor : DataEditor {
 
     private readonly IIOHelper _ioHelper;
     private readonly IEditorConfigurationParser _editorConfigurationParser;
@@ -30,7 +30,7 @@ public class YouTubeVideoEditor : DataEditor {
 
     #region Constructors
 
-    public YouTubeVideoEditor(IIOHelper ioHelper, IEditorConfigurationParser editorConfigurationParser, IDataValueEditorFactory dataValueEditorFactory) : base(dataValueEditorFactory) {
+    public YouTubeVideoPropertyEditor(IIOHelper ioHelper, IEditorConfigurationParser editorConfigurationParser, IDataValueEditorFactory dataValueEditorFactory) : base(dataValueEditorFactory) {
         _ioHelper = ioHelper;
         _editorConfigurationParser = editorConfigurationParser;
     }

@@ -9,7 +9,7 @@ using Skybrud.Essentials.Json.Extensions;
 namespace Limbo.Umbraco.YouTube.Models;
 
 /// <summary>
-/// Class representing the value of the <see cref="YouTubeVideoEditor"/> property editor.
+/// Class representing the value of the <see cref="YouTubeVideoPropertyEditor"/> property editor.
 /// </summary>
 public class YouTubeVideoValue : IVideoValue {
 

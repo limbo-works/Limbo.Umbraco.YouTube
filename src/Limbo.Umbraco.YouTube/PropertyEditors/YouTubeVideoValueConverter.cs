@@ -12,12 +12,12 @@ using Umbraco.Extensions;
 namespace Limbo.Umbraco.YouTube.PropertyEditors;
 
 /// <summary>
-/// Property value converter for <see cref="YouTubeVideoEditor"/>.
+/// Property value converter for <see cref="YouTubeVideoPropertyEditor"/>.
 /// </summary>
 public class YouTubeVideoValueConverter : PropertyValueConverterBase {
 
     public override bool IsConverter(IPublishedPropertyType propertyType) {
-        return propertyType.EditorAlias == YouTubeVideoEditor.EditorAlias;
+        return propertyType.EditorAlias == YouTubeVideoPropertyEditor.EditorAlias;
     }
 
     public override object? ConvertSourceToIntermediate(IPublishedElement owner, IPublishedPropertyType propertyType, object? source, bool preview) {
