@@ -5,6 +5,8 @@
 [![NuGet](https://img.shields.io/nuget/dt/Limbo.Umbraco.YouTube.svg)](https://www.nuget.org/packages/Limbo.Umbraco.YouTube)
 [![Umbraco Marketplace](https://img.shields.io/badge/umbraco-marketplace-%233544B1)](https://marketplace.umbraco.com/package/limbo.umbraco.youtube)
 
+[![Limbo.Umbraco.YouTube at packages.limbo.works](https://img.shields.io/badge/limbo-packages-blue)](https://packages.limbo.works/limbo.umbraco.youtube/)
+
 **Limbo.Umbraco.YouTube** is a package for Umbraco that features a property editor for inserting (via URL or embed code) a YouTube video. The property editor saves a bit of information about the video, which then will be availble in C#.
 
 The latest version (`v13.x`) supports Umbraco 13, whereas older releases support support Umbraco 10-12 (`v2.x`) and Umbraco 9 (`v1.x`).
@@ -41,16 +43,16 @@ The latest version (`v13.x`) supports Umbraco 13, whereas older releases support
 
 ### Umbraco 13
 
-The package targets Umbraco 13 and is available via [**NuGet**](https://www.nuget.org/packages/Limbo.Umbraco.YouTube/13.0.0). To install the package, you can use either .NET CLI:
+The package targets Umbraco 13 and is available via [**NuGet**](https://www.nuget.org/packages/Limbo.Umbraco.YouTube/13.0.1). To install the package, you can use either .NET CLI:
 
 ```
-dotnet add package Limbo.Umbraco.YouTube --version 13.0.0
+dotnet add package Limbo.Umbraco.YouTube --version 13.0.1
 ```
 
 or the NuGet package manager:
 
 ```
-Install-Package Limbo.Umbraco.YouTube -Version 13.0.0
+Install-Package Limbo.Umbraco.YouTube -Version 13.0.1
 ```
 
 ### Other versions of Umbraco
