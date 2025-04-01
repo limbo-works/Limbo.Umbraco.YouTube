@@ -41,7 +41,7 @@
   <!-- Include NuGet dependencies -->
   <ItemGroup>
     <PackageReference Include="Limbo.Umbraco.Video" Version="13.0.0" />
-    <PackageReference Include="Skybrud.Social.Google.YouTube" Version="1.0.0" />
+    <PackageReference Include="Skybrud.Social.Google.YouTube" Version="1.0.1" />
     <PackageReference Include="Umbraco.Cms.Core" Version="[13.0.0,13.999)" NoWarn="NU1902" />
     <PackageReference Include="Umbraco.Cms.Web.Website" Version="[13.0.0,13.999)" NoWarn="NU1902" />
     <PackageReference Include="Umbraco.Cms.Web.BackOffice" Version="[13.0.0,13.999)" NoWarn="NU1902" />
