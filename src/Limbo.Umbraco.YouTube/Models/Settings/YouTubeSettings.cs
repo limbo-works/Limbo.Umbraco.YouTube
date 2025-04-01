@@ -13,6 +13,6 @@ public class YouTubeSettings {
     /// <summary>
     /// Gets a collection of the credentials configured for YouTube.
     /// </summary>
-    public IReadOnlyList<YouTubeCredentials> Credentials { get; internal set; } = null!;
+    public List<YouTubeCredentials> Credentials { get; set; } = [];
 
 }
