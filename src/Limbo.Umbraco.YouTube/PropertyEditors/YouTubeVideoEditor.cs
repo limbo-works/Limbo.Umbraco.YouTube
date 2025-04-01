@@ -18,13 +18,13 @@ public class YouTubeVideoEditor : DataEditor {
 
     #region Constants
 
-    internal const string EditorAlias = "Limbo.Umbraco.YouTube";
+    public const string EditorAlias = "Limbo.Umbraco.YouTube";
 
-    internal const string EditorName = "Limbo YouTube Video";
+    public const string EditorName = "Limbo YouTube Video";
 
-    internal const string EditorView = "/App_Plugins/Limbo.Umbraco.YouTube/Views/Video.html";
+    public const string EditorView = "/App_Plugins/Limbo.Umbraco.YouTube/Views/Video.html";
 
-    internal const string EditorIcon = "icon-limbo-youtube-alt color-limbo";
+    public const string EditorIcon = "icon-limbo-youtube-alt color-limbo";
 
     #endregion
 
