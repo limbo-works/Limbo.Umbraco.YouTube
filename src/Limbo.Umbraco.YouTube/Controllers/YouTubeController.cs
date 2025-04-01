@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Linq;
 using Skybrud.Social.Google.YouTube;
+using Skybrud.Social.Google.YouTube.Exceptions;
 using Skybrud.Social.Google.YouTube.Models.Videos;
 using Skybrud.Social.Google.YouTube.Options.Videos;
 using Skybrud.Social.Google.YouTube.Responses.Videos;
@@ -63,6 +64,13 @@ public class YouTubeController : UmbracoAuthorizedApiController {
         try {
             YouTubeVideoListResponse response = http!.Videos.GetVideos(o);
             video = response.Body.Items.FirstOrDefault();
+        } catch (YouTubeHttpException ex) {
+            if (ex.Result.Error.Status == "PERMISSION_DENIED" || ex.Result.Error.Details.FirstOrDefault()?.Reason == "SERVICE_DISABLED") {
+                _logger.LogError(ex, "Access to the YouTube Data API v3 is currently disabled. Go to the Google Cloud Platform to enable access.");
+                return BadRequest("Access to the YouTube Data API v3 is currently disabled. Go to the Google Cloud Platform to enable access, or contact your administrator.");
+            }
+            _logger.LogError(ex, "Failed retrieving video information for from source {Source}", source);
+            return BadRequest("Failed retrieving video information from the YouTube API.");
         } catch (Exception ex) {
             _logger.LogError(ex, "Failed retrieving video information for from source {Source}", source);
             return BadRequest("Failed retrieving video information from the YouTube API.");
