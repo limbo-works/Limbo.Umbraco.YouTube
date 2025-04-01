@@ -46,7 +46,7 @@ public class YouTubeController : UmbracoAuthorizedApiController {
 
         if (string.IsNullOrWhiteSpace(source)) return BadRequest("No source specified.");
 
-        // Try to get thhe YouTube video ID from "source" - which be either an embed code or a URL
+        // Try to get the YouTube video ID from "source" - which be either an embed code or a URL
         if (!_youTubeService.TryGetVideoId(source, out YouTubeVideoOptions? options)) return BadRequest("Source doesn't match a valid URL or embed code.");
 
         // Get the first set of configured credentials (we don't currently support more than one)
