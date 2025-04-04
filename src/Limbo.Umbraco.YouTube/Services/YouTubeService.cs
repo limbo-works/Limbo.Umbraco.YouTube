@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Text.RegularExpressions;
 using Limbo.Umbraco.YouTube.Models.Credentials;
 using Limbo.Umbraco.YouTube.Models.Settings;
@@ -37,7 +38,7 @@ public class YouTubeService {
     /// <param name="source">The source </param>
     /// <param name="options"></param>
     /// <returns></returns>
-    public bool TryGetVideoId(string source, out YouTubeVideoOptions? options) {
+    public bool TryGetVideoId(string source, [NotNullWhen(true)] out YouTubeVideoOptions? options) {
 
         options = null;
         if (string.IsNullOrWhiteSpace(source)) return false;
