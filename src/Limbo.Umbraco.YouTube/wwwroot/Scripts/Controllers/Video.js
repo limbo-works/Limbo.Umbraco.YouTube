@@ -30,9 +30,15 @@
                 vm.value.credentials = res.data.credentials;
                 vm.value.parameters = res.data.parameters;
 
+                // Use "details" instead of "video" (changed in 13.0.2)
+                if (vm.value.video) {
+                    vm.value.details = vm.value.video;
+                    delete vm.value.video;
+                }
+
                 // As Umbraco/JSON.net will corrupt any timestamps in the JSON, we need to store it as serialized
-                vm.value.video = { _data: angular.toJson(res.data.video) };
-                rawVideoData = res.data.video;
+                vm.value.details = res.data.details;
+                rawVideoData = angular.fromJson(res.data.details._data);
 
                 // Update the property value
                 vm.sync();
@@ -49,6 +55,7 @@
                 delete vm.value.credentials;
                 delete vm.value.parameters;
                 delete vm.value.video;
+                delete vm.value.details;
                 delete vm.value.embed;
 
                 // Update the property value
@@ -72,7 +79,9 @@
             rawVideoData = null;
 
             delete vm.value.credentials;
+            delete vm.value.parameters;
             delete vm.value.video;
+            delete vm.value.details;
             delete vm.value.embed;
 
             // Update the property value
@@ -84,7 +93,7 @@
 
     };
 
-    vm.sync = function() {
+    vm.sync = function () {
 
         // In order to reset the property value, we need to set the value to an empty string rather than null as
         // Umbraco otherwise will save a string with the value "null" instead of an actual null value
@@ -98,7 +107,7 @@
         vm.getVideo();
     };
 
-    vm.refresh = function() {
+    vm.refresh = function () {
         vm.getVideo();
     };
 
@@ -145,15 +154,21 @@
             return;
         }
 
-        if (!$scope.model.value.video) return;
-        if (!$scope.model.value.video._data) return;
+        // Use "details" instead of "video" (changed in 13.0.2)
+        if ($scope.model.value.video) {
+            $scope.model.value.details = $scope.model.value.video;
+            delete $scope.model.value.video;
+        }
+
+        if (!$scope.model.value.details) return;
+        if (!$scope.model.value.details._data) return;
 
         // Umbraco has some an annoying behaviour when saving null values, so we need to work keep a shadow model to
         // work around this issue
         vm.value = $scope.model.value;
 
         // Get the YouTube video data from the "_data" property (necessary due to Umbraco/JSON.net issue)
-        rawVideoData = angular.fromJson(vm.value.video._data);
+        rawVideoData = angular.fromJson(vm.value.details._data);
 
         vm.updateUI();
 

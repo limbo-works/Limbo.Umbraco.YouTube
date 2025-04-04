@@ -59,7 +59,7 @@ public class YouTubeVideoValue : IVideoValue {
         Source = json.GetString("source")!;
         Provider = YouTubeVideoProvider.Default;
         Parameters = YouTubeVideoParameters.Parse(json.GetObject("parameters") ?? new JObject());
-        Details = json.GetObject("video", YouTubeVideoDetails.Parse)!;
+        Details = YouTubeVideoDetails.Parse(json.GetObject("details") ?? json.GetObject("video"))!;
         Embed = new YouTubeEmbed(Details, Parameters, config);
     }
 

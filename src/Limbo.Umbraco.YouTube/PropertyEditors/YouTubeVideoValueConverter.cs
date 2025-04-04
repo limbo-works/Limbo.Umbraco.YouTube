@@ -25,7 +25,7 @@ public class YouTubeVideoValueConverter : PropertyValueConverterBase {
     }
 
     public override object? ConvertIntermediateToObject(IPublishedElement owner, IPublishedPropertyType propertyType, PropertyCacheLevel referenceCacheLevel, object? inter, bool preview) {
-        if (inter is not JObject json || json.GetObject("video") is null) return null;
+        if (inter is not JObject json || (json.GetObject("details") ?? json.GetObject("video")) is null) return null;
         return YouTubeVideoValue.Parse(json, propertyType.DataType.Configuration as YouTubeVideoConfiguration);
     }
 

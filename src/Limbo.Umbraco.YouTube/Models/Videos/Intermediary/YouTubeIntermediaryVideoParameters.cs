@@ -1,22 +1,12 @@
 ﻿using System;
+using Limbo.Umbraco.YouTube.Options;
 using Newtonsoft.Json;
-using Skybrud.Essentials.Http.Collections;
 using Skybrud.Essentials.Json.Newtonsoft.Converters.Time;
 
-namespace Limbo.Umbraco.YouTube.Options;
+namespace Limbo.Umbraco.YouTube.Models.Videos.Intermediary;
 
-/// <summary>
-/// Class with options describing a video.
-/// </summary>
-public class YouTubeVideoOptions {
-
-    #region Properties
-
-    /// <summary>
-    /// Gets or sets the ID of the video.
-    /// </summary>
-    [JsonProperty("videoId")]
-    public string VideoId { get; }
+#pragma warning disable CS1591
+public class YouTubeIntermediaryVideoParameters {
 
     /// <summary>
     /// Gets whether the video will automatically start to play when the player loads.
@@ -80,34 +70,20 @@ public class YouTubeVideoOptions {
     [JsonProperty("disableCookies", DefaultValueHandling = DefaultValueHandling.Ignore)]
     public bool? DisableCookies { get; }
 
-    #endregion
-
-    #region Constructors
-
-    /// <summary>
-    /// Initializes a new instance based on the specified <paramref name="videoId"/>.
-    /// </summary>
-    /// <param name="videoId">The ID of the video.</param>
-    /// <param name="query">The query string.</param>
-    /// <param name="disableCookies">Whether cookies should be disabled (until the player is activated).</param>
-    public YouTubeVideoOptions(string videoId, string? query, bool? disableCookies) {
-
-        VideoId = videoId;
-        DisableCookies = disableCookies;
-
-        IHttpQueryString q = query is null ? new HttpQueryString() : HttpQueryString.Parse(query);
-
-        if (q.TryGetBoolean("autoplay", out bool autoplay)) Autoplay = autoplay;
-        if (q.TryGetBoolean("controls", out bool controls)) ShowControls = controls;
-        if (q.TryGetBoolean("disablekb", out bool disablekb)) DisableKeyboard = disablekb;
-        if (q.TryGetBoolean("enablejsapi", out bool enablejsapi)) EnableJsApi = enablejsapi;
-        if (q.TryGetBoolean("loop", out bool loop)) Loop = loop;
-        if (q.TryGetBoolean("rel", out bool rel)) ShowRelated = rel;
-        if (q.TryGetDouble("start", out double start)) Start = TimeSpan.FromSeconds(start);
-        if (q.TryGetDouble("end", out double end)) End = TimeSpan.FromSeconds(end);
-
+    public YouTubeIntermediaryVideoParameters(YouTubeVideoOptions options) {
+        Autoplay = options.Autoplay;
+        ShowControls = options.ShowControls;
+        DisableKeyboard = options.DisableKeyboard;
+        EnableJsApi = options.EnableJsApi;
+        Loop = options.Loop;
+        ShowRelated = options.ShowRelated;
+        Start = options.Start;
+        End = options.End;
+        DisableCookies = options.DisableCookies;
     }
 
-    #endregion
+    internal bool HasAny() {
+        return Autoplay is not null || ShowControls is not null || DisableKeyboard is not null || EnableJsApi is not null || Loop is not null || ShowRelated is not null || Start is not null || End is not null || DisableCookies is not null;
+    }
 
 }

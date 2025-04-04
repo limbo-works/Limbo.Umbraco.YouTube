@@ -1,14 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using System.Text.RegularExpressions;
+using Limbo.Umbraco.YouTube.Exceptions;
 using Limbo.Umbraco.YouTube.Models.Credentials;
 using Limbo.Umbraco.YouTube.Models.Settings;
+using Limbo.Umbraco.YouTube.Models.Videos.Intermediary;
 using Limbo.Umbraco.YouTube.Options;
 using Microsoft.Extensions.Options;
 using Skybrud.Essentials.Collections.Extensions;
 using Skybrud.Social.Google;
 using Skybrud.Social.Google.YouTube;
+using Skybrud.Social.Google.YouTube.Exceptions;
+using Skybrud.Social.Google.YouTube.Models.Videos;
+using Skybrud.Social.Google.YouTube.Options.Videos;
+using Skybrud.Social.Google.YouTube.Responses.Videos;
+using YouTubeException = Limbo.Umbraco.YouTube.Exceptions.YouTubeException;
 
 namespace Limbo.Umbraco.YouTube.Services;
 
@@ -103,6 +111,70 @@ public class YouTubeService {
 
         http = null;
         return false;
+
+    }
+
+    /// <summary>
+    /// Attempts to look up the video identified by the specified <paramref name="source"/>, and return an instance of <see cref="YouTubeIntermediaryVideoValue"/> if successful. When serialize to JSON, the value equals the property value saved in the database for properties using the YouTube video data type.
+    /// </summary>
+    /// <param name="source">The source (URL) as entered by the user.</param>
+    /// <returns>An instance of <see cref="YouTubeIntermediaryVideoValue"/> if successful; otherwise, <see langword="null"/>.</returns>
+    public virtual YouTubeIntermediaryVideoValue GetIntermediaryVideoValue(string source) {
+
+        // Must have a source
+        if (string.IsNullOrWhiteSpace(source)) throw new YouTubeException("No source specified.");
+
+        // Try to parse the source
+        if (!TryGetVideoId(source, out YouTubeVideoOptions? options)) throw new YouTubeInvalidSourceException(source);
+
+        // Get the video from the options
+        return GetIntermediaryVideoValue(source, options);
+
+    }
+
+    /// <summary>
+    /// Attempts to look up the video identified by the specified <paramref name="source"/>, and return an instance of <see cref="YouTubeIntermediaryVideoValue"/> if successful. When serialize to JSON, the value equals the property value saved in the database for properties using the Skyfish video data type.
+    /// </summary>
+    /// <param name="source">The source (URL) as entered by the user.</param>
+    /// <param name="options">The video options.</param>
+    /// <returns>An instance of <see cref="YouTubeIntermediaryVideoValue"/> representing the video.</returns>
+    protected virtual YouTubeIntermediaryVideoValue GetIntermediaryVideoValue(string source, YouTubeVideoOptions options) {
+
+        // Get the first set of configured credentials (we don't currently support more than one)
+        YouTubeCredentials? credentials = GetCredentials().FirstOrDefault();
+        if (credentials == null || !TryGetHttpService(credentials, out YouTubeHttpService? http)) throw new YouTubeNotConfiguredException();
+
+        // Initialize the options for the request to the YouTube API
+        YouTubeGetVideoListOptions o = new(options.VideoId) {
+            Part = YouTubeVideoParts.Snippet + YouTubeVideoParts.ContentDetails,
+        };
+
+        // Attempt to get video information from the YouTube API
+        YouTubeVideo? video;
+        try {
+            YouTubeVideoListResponse response = http!.Videos.GetVideos(o);
+            video = response.Body.Items.FirstOrDefault();
+        } catch (YouTubeHttpException ex) {
+            if (ex.Result.Error.Status == "PERMISSION_DENIED" && ex.Result.Error.Details.FirstOrDefault() is { Reason: "SERVICE_DISABLED" } d) {
+                throw new YouTubeServiceDisabledException(d, ex);
+            }
+            throw new YouTubeIntermediaryVideoException(source, ex);
+        } catch (Exception ex) {
+            throw new YouTubeIntermediaryVideoException(source, ex);
+        }
+
+        // If the video isn't found, YouTube will return 200 OK and an empty list rather than 404 Not Found, so as
+        // this won't be caught by the try/catch statement above, we can check whether "video" is null instead
+        if (video == null) throw new YouTubeVideoNotFoundException(source);
+
+        YouTubeIntermediaryVideoParameters? parameters = new(options);
+        if (!parameters.HasAny()) parameters = null;
+
+        // Initialize the intermediary details for the video
+        YouTubeIntermediaryVideoDetails details = new(video);
+
+        // Initialize a new intermediary video value
+        return new YouTubeIntermediaryVideoValue(source, credentials, parameters, details);
 
     }
 
