@@ -7,7 +7,7 @@ namespace Limbo.Umbraco.YouTube;
 /// <summary>
 /// Static class with various information and constants about the package.
 /// </summary>
-public class YouTubePackage {
+public static class YouTubePackage {
 
     /// <summary>
     /// Gets the alias of the package.
@@ -34,7 +34,7 @@ public class YouTubePackage {
     /// <summary>
     /// Gets the semantic version of the package.
     /// </summary>
-    public static readonly SemVersion SemVersion = SemVersion.Parse(ReflectionUtils.GetInformationalVersion<YouTubePackage>());
+    public static readonly SemVersion SemVersion = SemVersion.Parse(InformationalVersion);
 
     /// <summary>
     /// Gets the URL of the GitHub repository for this package.
@@ -49,6 +49,6 @@ public class YouTubePackage {
     /// <summary>
     /// Gets the URL of the documentation for this package.
     /// </summary>
-    public const string DocumentationUrl = "https://packages.limbo.works/limbo.umbraco.youtube/v13/docs/";
+    public const string DocumentationUrl = "https://packages.limbo.works/limbo.umbraco.youtube/v17/docs/";
 
 }

@@ -8,7 +8,7 @@
 
 **Limbo.Umbraco.YouTube** is a package for Umbraco that features a property editor for inserting (via URL or embed code) a YouTube video. The property editor saves a bit of information about the video, which then will be availble in C#.
 
-The latest version (`v13.x`) supports Umbraco 13, whereas older releases support support Umbraco 10-12 (`v2.x`) and Umbraco 9 (`v1.x`).
+The latest version (`v17.x`) supports Umbraco 17, whereas older releases support Umbraco 13 (`v13.x`), Umbraco 10-12 (`v2.x`) and Umbraco 9 (`v1.x`).
 
 <table>
   <tr>
@@ -18,13 +18,13 @@ The latest version (`v13.x`) supports Umbraco 13, whereas older releases support
   <tr>
     <td><strong>Umbraco:</strong></td>
     <td>
-      Umbraco 13
+      Umbraco 17
     </td>
   </tr>
   <tr>
     <td><strong>Target Framework:</strong></td>
     <td>
-      .NET 8
+      .NET 10
     </td>
   </tr>
 </table>
@@ -40,22 +40,25 @@ The latest version (`v13.x`) supports Umbraco 13, whereas older releases support
 
 ## Installation
 
-### Umbraco 13
+### Umbraco 17
 
-The package targets Umbraco 13 and is available via [**NuGet**](https://www.nuget.org/packages/Limbo.Umbraco.YouTube/13.0.2). To install the package, you can use either .NET CLI:
+The package targets Umbraco 17 and is available via [**NuGet**](https://www.nuget.org/packages/Limbo.Umbraco.YouTube/17.0.0-alpha000). To install the package, you can use either .NET CLI:
 
 ```
-dotnet add package Limbo.Umbraco.YouTube --version 13.0.2
+dotnet add package Limbo.Umbraco.YouTube --version 17.0.0-alpha000
 ```
 
 or the NuGet package manager:
 
 ```
-Install-Package Limbo.Umbraco.YouTube -Version 13.0.2
+Install-Package Limbo.Umbraco.YouTube -Version 17.0.0-alpha000
 ```
+
+This is a **prerelease** version. See [**documentation/UPGRADE-UMBRACO-17.md**](./documentation/UPGRADE-UMBRACO-17.md) for what changed when the package was ported from Umbraco 13 to Umbraco 17.
 
 ### Other versions of Umbraco
 
+- [**`v13/main`**](https://github.com/limbo-works/Limbo.Umbraco.YouTube/tree/v13/main) (Umbraco 13)
 - [**`v2/main`**](https://github.com/limbo-works/Limbo.Umbraco.YouTube/tree/v2/main) (Umbraco 10-12)
 - [**`v1/main`**](https://github.com/limbo-works/Limbo.Umbraco.YouTube/tree/v1/main) (Umbraco 9)
 
@@ -104,6 +107,9 @@ The API key let's this package access the YouTube API on behalf of your app/proj
 <br /><br />
 
 ## Screenshots
+
+> **Note:** the screenshots below are from the Umbraco 13 version of the package. The property editor was
+> rebuilt for the new Umbraco backoffice in `v17.x`, so it now looks different, although it works the same way.
 
 ![image](https://user-images.githubusercontent.com/3634580/191851451-b3521520-53b1-48fc-9770-0fab12df719d.png)  
 *Insert video by URL*

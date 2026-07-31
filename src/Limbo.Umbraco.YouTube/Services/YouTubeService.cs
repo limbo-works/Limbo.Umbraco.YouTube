@@ -9,7 +9,7 @@ using Limbo.Umbraco.YouTube.Models.Settings;
 using Limbo.Umbraco.YouTube.Models.Videos.Intermediary;
 using Limbo.Umbraco.YouTube.Options;
 using Microsoft.Extensions.Options;
-using Skybrud.Essentials.Collections.Extensions;
+using Skybrud.Essentials.Collections.Lists.Extensions;
 using Skybrud.Social.Google;
 using Skybrud.Social.Google.YouTube;
 using Skybrud.Social.Google.YouTube.Exceptions;
