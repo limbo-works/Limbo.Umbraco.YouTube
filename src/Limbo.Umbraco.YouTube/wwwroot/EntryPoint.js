@@ -9,7 +9,7 @@ import { YouTubeService } from "@limbo/youtube/service";
 
 const ALIAS = "Limbo.Umbraco.YouTube";
 
-const SCHEMA_ALIAS = ALIAS;
+const SCHEMA_ALIAS = `${ALIAS}.Video`;
 const VIDEO_UI_ALIAS = `${ALIAS}.Video.Ui`;
 const BUTTON_LIST_ALIAS = `${ALIAS}.ButtonList.PropertyEditorUi`;
 

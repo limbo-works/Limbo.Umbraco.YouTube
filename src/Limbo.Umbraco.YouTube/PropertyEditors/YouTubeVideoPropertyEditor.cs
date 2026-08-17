@@ -15,7 +15,9 @@ public class YouTubeVideoPropertyEditor : DataEditor {
 
     #region Constants
 
-    public const string EditorAlias = "Limbo.Umbraco.YouTube";
+    public const string EditorAlias = "Limbo.Umbraco.YouTube.Video";
+
+    public const string EditorAliasUi = "Limbo.Umbraco.YouTube.Video.Ui";
 
     #endregion
 
