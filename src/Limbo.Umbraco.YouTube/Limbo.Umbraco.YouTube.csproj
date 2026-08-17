@@ -64,9 +64,10 @@
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
   </PropertyGroup>
 
-  <!-- Ignore vulnerabilities from transient dependencies -->
-  <PropertyGroup>
-    <NuGetAuditMode>direct</NuGetAuditMode>
-  </PropertyGroup>
+  <!-- Include custom appsettings schema -->
+  <ItemGroup>
+    <None Include="appsettings-schema.Limbo.Umbraco.YouTube.json" Pack="true" PackagePath="" />
+    <None Include="buildTransitive\Limbo.Umbraco.YouTube.targets" Pack="true" PackagePath="buildTransitive\" />
+  </ItemGroup>
 
 </Project>

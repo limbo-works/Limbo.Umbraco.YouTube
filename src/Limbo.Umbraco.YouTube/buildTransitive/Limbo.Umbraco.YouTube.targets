@@ -1,0 +1,6 @@
+﻿<Project>
+  <ItemGroup>
+    <UmbracoJsonSchemaFiles
+      Include="$(MSBuildThisFileDirectory)..\appsettings-schema.Limbo.Umbraco.YouTube.json" />
+  </ItemGroup>
+</Project>
