@@ -8,6 +8,8 @@ using System;
 using Asp.Versioning;
 using Limbo.Umbraco.YouTube.Api;
 using Limbo.Umbraco.YouTube.Exceptions;
+using Limbo.Umbraco.YouTube.Models;
+using Limbo.Umbraco.YouTube.Models.Api;
 using Limbo.Umbraco.YouTube.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -52,10 +54,10 @@ public class YouTubeController : ManagementApiControllerBase {
     /// </summary>
     /// <returns>An object with the server variables.</returns>
     [HttpGet("serverVariables")]
-    public object GetServerVariables() {
-        return new {
-            version = YouTubePackage.InformationalVersion,
-            cacheBuster = YouTubePackage.InformationalVersion.ToMd5Hash()
+    public ServerVariables GetServerVariables() {
+        return new ServerVariables {
+            Version = YouTubePackage.InformationalVersion,
+            CacheBuster = YouTubePackage.InformationalVersion.ToMd5Hash()
         };
     }
 

@@ -4,7 +4,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Limbo.Umbraco.YouTube.Exceptions;
-using Limbo.Umbraco.YouTube.Models.Credentials;
 using Limbo.Umbraco.YouTube.Models.Settings;
 using Limbo.Umbraco.YouTube.Models.Videos.Intermediary;
 using Limbo.Umbraco.YouTube.Options;

@@ -28,13 +28,13 @@ public class YouTubeEmbedPlayerOptions {
     public bool? ShowControls { get; set; }
 
     /// <summary>
-    /// Gets or sets wether the player should not respond to keyboard controls.
+    /// Gets or sets whether the player should not respond to keyboard controls.
     /// </summary>
     [JsonProperty("disablekb")]
     public bool? DisableKeyboard { get; set; }
 
     /// <summary>
-    /// Gets or sets wether the player can be controlled via IFrame Player API calls.
+    /// Gets or sets whether the player can be controlled via IFrame Player API calls.
     /// </summary>
     [JsonProperty("enablejsapi")]
     public bool? EnableJsApi { get; set; }
@@ -68,7 +68,7 @@ public class YouTubeEmbedPlayerOptions {
     public TimeSpan? End { get; set; }
 
     /// <summary>
-    /// Gets or sets or sets whether privacy-enhached mode should be enabled. When you turn on privacy-enhanced mode,
+    /// Gets or sets whether privacy-enhanced mode should be enabled. When you turn on privacy-enhanced mode,
     /// YouTube won't store information about visitors on your website unless they play the video.
     /// </summary>
     [JsonProperty("disableCookies", DefaultValueHandling = DefaultValueHandling.Ignore)]

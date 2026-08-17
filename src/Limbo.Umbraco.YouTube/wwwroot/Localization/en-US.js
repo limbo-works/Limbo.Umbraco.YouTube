@@ -4,7 +4,7 @@
         id: "ID",
         title: "Title",
         duration: "Duration",
-        refresh: "Refresh current video",
+        refresh: "Refresh",
         clear: "Clear",
         urlOrEmbedCode: "URL or embed code",
         urlPlaceholder: "Enter the URL or embed code of the video here...",

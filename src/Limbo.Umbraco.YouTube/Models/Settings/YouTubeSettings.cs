@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Limbo.Umbraco.YouTube.Models.Credentials;
 using Umbraco.Cms.Core.Configuration.Models;
 
 namespace Limbo.Umbraco.YouTube.Models.Settings;

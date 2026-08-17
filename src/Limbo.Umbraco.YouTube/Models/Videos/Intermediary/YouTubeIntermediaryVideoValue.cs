@@ -1,7 +1,7 @@
 ﻿#pragma warning disable CS1591
 
 using System;
-using Limbo.Umbraco.YouTube.Models.Credentials;
+using Limbo.Umbraco.YouTube.Models.Settings;
 using Newtonsoft.Json;
 
 namespace Limbo.Umbraco.YouTube.Models.Videos.Intermediary;

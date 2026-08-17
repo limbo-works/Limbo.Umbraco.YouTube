@@ -1,7 +1,7 @@
 ﻿using System;
 using Limbo.Umbraco.Video.Models.Credentials;
 
-namespace Limbo.Umbraco.YouTube.Models.Credentials;
+namespace Limbo.Umbraco.YouTube.Models.Settings;
 
 /// <summary>
 /// Class with information about the credentials used for accessing the YouTube API.
@@ -11,22 +11,22 @@ public class YouTubeCredentials : ICredentials {
     /// <summary>
     /// Gets the key of the credentials.
     /// </summary>
-    public Guid Key { get; internal set; }
+    public required Guid Key { get; set; }
 
     /// <summary>
     /// Gets the friendly name of the credentials.
     /// </summary>
-    public string Name { get; internal set; } = null!;
+    public required string Name { get; set; }
 
     /// <summary>
     /// Gets the description of the credentials.
     /// </summary>
-    public string? Description { get; internal set; }
+    public string? Description { get; set; }
 
     /// <summary>
     /// If configured, gets the Google server key. Server keys allow accessing the YouTube API without a user context.
     /// </summary>
-    public string ApiKey { get; internal set; } = null!;
+    public required string ApiKey { get; set; }
 
     /// <summary>
     /// Initializes a new instance with default options.
