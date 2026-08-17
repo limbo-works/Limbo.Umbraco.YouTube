@@ -42,25 +42,25 @@ The latest version (`v17.x`) supports Umbraco 17, whereas older releases support
 
 ### Umbraco 17
 
-The package targets Umbraco 17 and is available via [**NuGet**](https://www.nuget.org/packages/Limbo.Umbraco.YouTube/17.0.0-alpha000). To install the package, you can use either .NET CLI:
+The package targets Umbraco 17 and is available via [**NuGet**](https://www.nuget.org/packages/Limbo.Umbraco.YouTube/17.0.0-alpha001). To install the package, you can use either .NET CLI:
 
 ```
-dotnet add package Limbo.Umbraco.YouTube --version 17.0.0-alpha000
+dotnet add package Limbo.Umbraco.YouTube --version 17.0.0-alpha001
 ```
 
 or the NuGet package manager:
 
 ```
-Install-Package Limbo.Umbraco.YouTube -Version 17.0.0-alpha000
+Install-Package Limbo.Umbraco.YouTube -Version 17.0.0-alpha001
 ```
 
 This is a **prerelease** version. See [**documentation/UPGRADE-UMBRACO-17.md**](./documentation/UPGRADE-UMBRACO-17.md) for what changed when the package was ported from Umbraco 13 to Umbraco 17.
 
 ### Other versions of Umbraco
 
-- [**`v13/main`**](https://github.com/limbo-works/Limbo.Umbraco.YouTube/tree/v13/main) (Umbraco 13)
-- [**`v2/main`**](https://github.com/limbo-works/Limbo.Umbraco.YouTube/tree/v2/main) (Umbraco 10-12)
-- [**`v1/main`**](https://github.com/limbo-works/Limbo.Umbraco.YouTube/tree/v1/main) (Umbraco 9)
+- [**`v13/main`**](https://github.com/limbo-works/Limbo.Umbraco.YouTube/tree/v13/main) Umbraco 13
+- ~~[**`v2/main`**](https://github.com/limbo-works/Limbo.Umbraco.YouTube/tree/v2/main) Umbraco 10, 11 and 12~~ <sub title="Umbraco 10, 11 and 12 have reached end-of-life"><sup>(EOL)</sup></sub>
+- ~~[**`v1/main`**](https://github.com/limbo-works/Limbo.Umbraco.YouTube/tree/v1/main) Umbraco 9~~ <sub title="Umbraco 9 has reached end-of-life"><sup>(EOL)</sup></sub>
 
 
 
