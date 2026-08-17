@@ -281,7 +281,7 @@ class LimboYouTubeVideoElement extends UmbFormControlMixin(UmbLitElement, undefi
         }
 
         h5 {
-            margin: 0 0 var(--uui-size-space-2);
+            margin: 0;
         }
 
         .editor {

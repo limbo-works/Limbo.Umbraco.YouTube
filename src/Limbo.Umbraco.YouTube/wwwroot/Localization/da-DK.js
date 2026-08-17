@@ -4,7 +4,7 @@
         id: "ID",
         title: "Titel",
         duration: "Længde",
-        refresh: "Genindlæs den valgte video",
+        refresh: "Genindlæs",
         clear: "Ryd",
         urlOrEmbedCode: "URL eller embed-kode",
         urlPlaceholder: "Angiv videoens URL eller embed-kode her...",

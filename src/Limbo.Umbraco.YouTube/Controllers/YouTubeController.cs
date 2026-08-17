@@ -8,11 +8,15 @@ using System;
 using Asp.Versioning;
 using Limbo.Umbraco.YouTube.Api;
 using Limbo.Umbraco.YouTube.Exceptions;
+using Limbo.Umbraco.YouTube.Models.Api;
+using Limbo.Umbraco.YouTube.Models.Videos.Intermediary;
 using Limbo.Umbraco.YouTube.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Skybrud.Essentials.AspNetCore.Json.Newtonsoft;
 using Skybrud.Essentials.Security.Extensions;
 using Umbraco.Cms.Api.Common.Attributes;
@@ -52,10 +56,10 @@ public class YouTubeController : ManagementApiControllerBase {
     /// </summary>
     /// <returns>An object with the server variables.</returns>
     [HttpGet("serverVariables")]
-    public object GetServerVariables() {
-        return new {
-            version = YouTubePackage.InformationalVersion,
-            cacheBuster = YouTubePackage.InformationalVersion.ToMd5Hash()
+    public ServerVariablesResult GetServerVariables() {
+        return new ServerVariablesResult {
+            Version = YouTubePackage.InformationalVersion,
+            CacheBuster = YouTubePackage.InformationalVersion.ToMd5Hash()
         };
     }
 
@@ -65,12 +69,13 @@ public class YouTubeController : ManagementApiControllerBase {
     /// <param name="source">The source (URL or embed code) as entered by the user.</param>
     /// <returns>Information about the video matching <paramref name="source"/>.</returns>
     [HttpGet("video")]
-    public object GetVideo(string? source) {
+    public ActionResult<VideoResult> GetVideo(string? source) {
 
         if (string.IsNullOrWhiteSpace(source)) return BadRequest("No source specified.");
 
         try {
-            return NewtonsoftJsonResult.Ok(_youTubeService.GetIntermediaryVideoValue(source));
+            YouTubeIntermediaryVideoValue inter = _youTubeService.GetIntermediaryVideoValue(source);
+            return new VideoResult(inter);
         } catch (YouTubeInvalidSourceException ex) {
             return BadRequest(ex.Message);
         } catch (YouTubeVideoNotFoundException ex) {
@@ -89,7 +94,7 @@ public class YouTubeController : ManagementApiControllerBase {
 
     #region Private methods
 
-    private static IActionResult InternalServerError(object value) {
+    private static ActionResult InternalServerError(object value) {
         return new ObjectResult(value) {
             StatusCode = StatusCodes.Status500InternalServerError
         };

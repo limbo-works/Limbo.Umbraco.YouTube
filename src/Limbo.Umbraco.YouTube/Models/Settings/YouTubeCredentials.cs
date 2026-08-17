@@ -1,7 +1,7 @@
 ﻿using System;
 using Limbo.Umbraco.Video.Models.Credentials;
 
-namespace Limbo.Umbraco.YouTube.Models.Credentials;
+namespace Limbo.Umbraco.YouTube.Models.Settings;
 
 /// <summary>
 /// Class with information about the credentials used for accessing the YouTube API.
