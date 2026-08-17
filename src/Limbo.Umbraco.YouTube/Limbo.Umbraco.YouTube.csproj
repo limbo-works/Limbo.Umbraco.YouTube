@@ -37,6 +37,11 @@
     <AssemblyMetadata Include="UmbracoMarketplaceUrl" Value="https://marketplace.umbraco.com/package/limbo.umbraco.youtube" />
   </ItemGroup>
 
+  <!-- Ignore vulnerabilities from transient dependencies -->
+  <PropertyGroup>
+	  <NuGetAuditMode>direct</NuGetAuditMode>
+  </PropertyGroup>
+
   <!-- Include NuGet dependencies -->
   <ItemGroup>
     <PackageReference Include="Limbo.Umbraco.Video" Version="17.0.0-alpha001" />

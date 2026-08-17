@@ -1,7 +1,4 @@
-﻿// Replaces the old AngularJS "ButtonList.html" configuration view. Items are matched on their "value" (rather
-// than an alias) so the element can store nulls, booleans and strings alike - which is what the tri-state
-// embed options (not specified / yes / no) and the cache level dropdown need.
-import { UmbElementMixin } from "@umbraco-cms/backoffice/element-api";
+﻿import { UmbElementMixin } from "@umbraco-cms/backoffice/element-api";
 import { LitElement, html, css, repeat } from "@umbraco-cms/backoffice/external/lit";
 import { UmbChangeEvent } from "@umbraco-cms/backoffice/event";
 
@@ -46,8 +43,8 @@ class LimboYouTubeButtonListElement extends UmbElementMixin(LitElement) {
             <div class="items">
                 ${repeat(this.#items, (item) => String(item.value), (item) => html`
                     <uui-button
-                        look=${this.#isActive(item) ? "primary" : "outline"}
-                        color=${this.#isActive(item) ? "positive" : "default"}
+                        class="${this.#isActive(item) ? "--active" : ""}"
+                        look=${this.#isActive(item) ? "secondary" : "secondary"}
                         title=${item.title ?? ""}
                         label=${item.label}
                         ?disabled=${this.readonly}
@@ -58,6 +55,7 @@ class LimboYouTubeButtonListElement extends UmbElementMixin(LitElement) {
     }
 
     static styles = css`
+
         :host {
             display: block;
         }
@@ -67,6 +65,12 @@ class LimboYouTubeButtonListElement extends UmbElementMixin(LitElement) {
             flex-wrap: wrap;
             gap: var(--uui-size-space-2);
         }
+
+        uui-button.--active {
+            --uui-button-background-color: var(--uui-color-current, #f5c1bc);
+            --uui-button-background-color-hover: var(--uui-color-current-emphasis, #f8d6d3);
+        }
+
     `;
 
 }

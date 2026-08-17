@@ -7,6 +7,6 @@ export default [
     },
     {
         name: "limbo-youtube-alt",
-        path: () => import("./Icons/YouTube.js")
+        path: () => import("./Icons/YouTubeAlt.js")
     }
 ];
