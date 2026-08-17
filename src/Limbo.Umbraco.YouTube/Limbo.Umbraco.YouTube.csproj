@@ -3,20 +3,19 @@
 <Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
-    <LangVersion>12</LangVersion>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <StaticWebAssetBasePath>App_Plugins/$(AssemblyName)</StaticWebAssetBasePath>
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <PropertyGroup>
-    <VersionPrefix>13.0.2</VersionPrefix>
+    <VersionPrefix>17.0.0-alpha000</VersionPrefix>
     <VersionSuffix Condition="'$(Configuration)'=='Debug'">build$([System.DateTime]::UtcNow.ToString(`yyyyMMddHHmm`))</VersionSuffix>
     <Company>Limbo</Company>
     <Authors>Anders Bjerner</Authors>
     <Copyright>Copyright © $([System.DateTime]::UtcNow.ToString(`yyyy`))</Copyright>
     <Title>Limbo YouTube</Title>
-    <Description>YouTube video picker for Umbraco.</Description>
+    <Description>YouTube video picker for Umbraco 17.</Description>
   </PropertyGroup>
 
   <!-- Information for the NuGet package -->
@@ -24,7 +23,7 @@
     <PackageId>Limbo.Umbraco.YouTube</PackageId>
     <PackageTags>Skybrud, Limbo, Umbraco, YouTube, Integration, Umbraco-Marketplace</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageProjectUrl>https://packages.limbo.works/limbo.umbraco.youtube/v13/</PackageProjectUrl>
+    <PackageProjectUrl>https://packages.limbo.works/limbo.umbraco.youtube/v17/</PackageProjectUrl>
     <PackageIcon>Limbo.png</PackageIcon>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/limbo-works/Limbo.Umbraco.YouTube</RepositoryUrl>
@@ -33,18 +32,26 @@
   <!-- Include additional metadata in the assembly -->
   <ItemGroup>
     <AssemblyMetadata Include="PackageProjectUrl" Value="https://packages.limbo.works/limbo.umbraco.youtube/" />
-    <AssemblyMetadata Include="DocumentationUrl" Value="https://packages.limbo.works/limbo.umbraco.youtube/docs/v13/" />
+    <AssemblyMetadata Include="DocumentationUrl" Value="https://packages.limbo.works/limbo.umbraco.youtube/docs/v17/" />
     <AssemblyMetadata Include="NuGetUrl" Value="https://www.nuget.org/packages/Limbo.Umbraco.YouTube" />
     <AssemblyMetadata Include="UmbracoMarketplaceUrl" Value="https://marketplace.umbraco.com/package/limbo.umbraco.youtube" />
   </ItemGroup>
 
+  <!-- Ignore vulnerabilities from transient dependencies -->
+  <PropertyGroup>
+	  <NuGetAuditMode>direct</NuGetAuditMode>
+  </PropertyGroup>
+
   <!-- Include NuGet dependencies -->
   <ItemGroup>
-    <PackageReference Include="Limbo.Umbraco.Video" Version="13.0.0" />
-    <PackageReference Include="Skybrud.Social.Google.YouTube" Version="1.0.1" />
-    <PackageReference Include="Umbraco.Cms.Core" Version="[13.0.0,13.999)" NoWarn="NU1902" />
-    <PackageReference Include="Umbraco.Cms.Web.Website" Version="[13.0.0,13.999)" NoWarn="NU1902" />
-    <PackageReference Include="Umbraco.Cms.Web.BackOffice" Version="[13.0.0,13.999)" NoWarn="NU1902" />
+    <PackageReference Include="Limbo.Umbraco.Video" Version="17.0.0-alpha001" />
+    <PackageReference Include="Skybrud.Essentials" Version="1.1.68" />
+    <PackageReference Include="Skybrud.Essentials.AspNetCore" Version="1.0.2" />
+    <PackageReference Include="Skybrud.Social.Google.YouTube" Version="1.0.2" />
+    <PackageReference Include="Umbraco.Cms.Core" Version="[17.0.0,17.9.9)" NoWarn="NU1902" />
+    <PackageReference Include="Umbraco.Cms.Web.Common" Version="[17.0.0,17.9.9)" NoWarn="NU1902" />
+    <PackageReference Include="Umbraco.Cms.Web.Website" Version="[17.0.0,17.9.9)" NoWarn="NU1902" />
+    <PackageReference Include="Umbraco.Cms.Api.Management" Version="[17.0.0,17.9.9)" NoWarn="NU1902" />
   </ItemGroup>
 
   <!-- Include package icon for NuGet -->
@@ -52,17 +59,14 @@
     <Content Include="../build/Limbo.png" Pack="true" PackagePath="\" />
   </ItemGroup>
 
-  <!-- Remove non-package files from the NuGet package -->
-  <ItemGroup>
-    <Content Remove="compilerconfig.json" />
-    <Content Remove="wwwroot/Scripts/Intellisense.js" />
-    <None Include="compilerconfig.json" />
-    <None Include="wwwroot/Scripts/Intellisense.js" />
-  </ItemGroup>
-
   <!-- Generate XML documentation -->
   <PropertyGroup>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
+  </PropertyGroup>
+
+  <!-- Ignore vulnerabilities from transient dependencies -->
+  <PropertyGroup>
+    <NuGetAuditMode>direct</NuGetAuditMode>
   </PropertyGroup>
 
 </Project>

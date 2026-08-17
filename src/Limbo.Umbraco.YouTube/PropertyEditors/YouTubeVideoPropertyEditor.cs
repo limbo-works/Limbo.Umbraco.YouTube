@@ -1,52 +1,39 @@
 ﻿using Umbraco.Cms.Core.IO;
-using Umbraco.Cms.Core.Models;
 using Umbraco.Cms.Core.PropertyEditors;
-using Umbraco.Cms.Core.Services;
 
 #pragma warning disable 1591
 
 namespace Limbo.Umbraco.YouTube.PropertyEditors;
 
 /// <summary>
-/// Represents a block list property editor.
+/// Represents the YouTube video property editor.
 /// </summary>
-[DataEditor(EditorAlias, EditorName, EditorView, ValueType = ValueTypes.Json, Group = "Limbo", Icon = EditorIcon)]
+[DataEditor(EditorAlias, ValueType = ValueTypes.Json)]
 public class YouTubeVideoPropertyEditor : DataEditor {
 
     private readonly IIOHelper _ioHelper;
-    private readonly IEditorConfigurationParser _editorConfigurationParser;
 
     #region Constants
 
-    public const string EditorAlias = "Limbo.Umbraco.YouTube";
+    public const string EditorAlias = "Limbo.Umbraco.YouTube.Video";
 
-    public const string EditorName = "Limbo YouTube Video";
-
-    public const string EditorView = "/App_Plugins/Limbo.Umbraco.YouTube/Views/Video.html";
-
-    public const string EditorIcon = "icon-limbo-youtube-alt color-limbo";
+    public const string EditorAliasUi = "Limbo.Umbraco.YouTube.Video.Ui";
 
     #endregion
 
     #region Constructors
 
-    public YouTubeVideoPropertyEditor(IIOHelper ioHelper, IEditorConfigurationParser editorConfigurationParser, IDataValueEditorFactory dataValueEditorFactory) : base(dataValueEditorFactory) {
+    public YouTubeVideoPropertyEditor(IDataValueEditorFactory dataValueEditorFactory, IIOHelper ioHelper) : base(dataValueEditorFactory) {
         _ioHelper = ioHelper;
-        _editorConfigurationParser = editorConfigurationParser;
+        SupportsReadOnly = true;
     }
 
     #endregion
 
     #region Member methods
 
-    public override IDataValueEditor GetValueEditor(object? configuration) {
-        IDataValueEditor editor = base.GetValueEditor(configuration);
-        if (editor is DataValueEditor dve) dve.View += $"?v={YouTubePackage.InformationalVersion}";
-        return editor;
-    }
-
     protected override IConfigurationEditor CreateConfigurationEditor() {
-        return new YouTubeVideoConfigurationEditor(_ioHelper, _editorConfigurationParser);
+        return new YouTubeVideoConfigurationEditor(_ioHelper);
     }
 
     #endregion

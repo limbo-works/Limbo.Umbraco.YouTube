@@ -1,19 +1,37 @@
-﻿using System;
-using System.Linq;
+﻿// [CHANGE: Umbraco 17 upgrade - UmbracoAuthorizedApiController/[PluginController] are gone. This is now a
+// versioned Management API controller under /umbraco/management/api/v1/limbo/youtube. Responses are written
+// with Newtonsoft (NewtonsoftJsonResult) because the intermediary models are annotated with [JsonProperty]
+// and the Management API otherwise serializes with System.Text.Json.]
+// Related: see documentation/UPGRADE-UMBRACO-17.md for the full list of changed files.
+
+using System;
+using Asp.Versioning;
+using Limbo.Umbraco.YouTube.Api;
 using Limbo.Umbraco.YouTube.Exceptions;
 using Limbo.Umbraco.YouTube.Services;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Umbraco.Cms.Web.BackOffice.Controllers;
-using Umbraco.Cms.Web.Common.Attributes;
+using Skybrud.Essentials.AspNetCore.Json.Newtonsoft;
+using Skybrud.Essentials.Security.Extensions;
+using Umbraco.Cms.Api.Common.Attributes;
+using Umbraco.Cms.Api.Management.Controllers;
+using Umbraco.Cms.Api.Management.Routing;
+using Umbraco.Cms.Web.Common.Authorization;
 using YouTubeException = Limbo.Umbraco.YouTube.Exceptions.YouTubeException;
 
 #pragma warning disable 1591
 
 namespace Limbo.Umbraco.YouTube.Controllers;
 
-[PluginController("Limbo")]
-public class YouTubeController : UmbracoAuthorizedApiController {
+[ApiController]
+[VersionedApiBackOfficeRoute(YouTubeApiConstants.Route)]
+[Authorize(Policy = AuthorizationPolicies.SectionAccessContent)]
+[MapToApi(YouTubeApiConstants.Alias)]
+[ApiVersion("1.0")]
+[ApiExplorerSettings(GroupName = YouTubeApiConstants.GroupName)]
+public class YouTubeController : ManagementApiControllerBase {
 
     private readonly ILogger<YouTubeController> _logger;
     private readonly YouTubeService _youTubeService;
@@ -29,32 +47,52 @@ public class YouTubeController : UmbracoAuthorizedApiController {
 
     #region Public API methods
 
-    [HttpGet]
-    [HttpPost]
-    public object GetVideo() {
+    /// <summary>
+    /// Returns the server variables needed by the backoffice part of this package.
+    /// </summary>
+    /// <returns>An object with the server variables.</returns>
+    [HttpGet("serverVariables")]
+    public object GetServerVariables() {
+        return new {
+            version = YouTubePackage.InformationalVersion,
+            cacheBuster = YouTubePackage.InformationalVersion.ToMd5Hash()
+        };
+    }
 
-        // Get the "source" parameter from either GET or POST
-        string? source = HttpContext.Request.Query["source"];
-        if (string.IsNullOrWhiteSpace(source) && HttpContext.Request.HasFormContentType) {
-            source = HttpContext.Request.Form["source"].FirstOrDefault();
-        }
+    /// <summary>
+    /// Returns information about the video matching the specified <paramref name="source"/>.
+    /// </summary>
+    /// <param name="source">The source (URL or embed code) as entered by the user.</param>
+    /// <returns>Information about the video matching <paramref name="source"/>.</returns>
+    [HttpGet("video")]
+    public object GetVideo(string? source) {
 
         if (string.IsNullOrWhiteSpace(source)) return BadRequest("No source specified.");
 
         try {
-            return _youTubeService.GetIntermediaryVideoValue(source);
+            return NewtonsoftJsonResult.Ok(_youTubeService.GetIntermediaryVideoValue(source));
         } catch (YouTubeInvalidSourceException ex) {
             return BadRequest(ex.Message);
         } catch (YouTubeVideoNotFoundException ex) {
             return NotFound(ex.Message);
         } catch (YouTubeException ex) {
-            _logger.LogError(ex, "Failed retrieving video information for from source {Source}", source);
-            return BadRequest(ex.Message);
+            _logger.LogError(ex, "Failed retrieving video information from source {Source}", source);
+            return InternalServerError(ex.Message);
         } catch (Exception ex) {
-            _logger.LogError(ex, "Failed retrieving video information for from source {Source}", source);
-            return BadRequest("Failed retrieving video information from the YouTube API.");
+            _logger.LogError(ex, "Failed retrieving video information from source {Source}", source);
+            return InternalServerError("Failed retrieving video information from the YouTube API.");
         }
 
+    }
+
+    #endregion
+
+    #region Private methods
+
+    private static IActionResult InternalServerError(object value) {
+        return new ObjectResult(value) {
+            StatusCode = StatusCodes.Status500InternalServerError
+        };
     }
 
     #endregion

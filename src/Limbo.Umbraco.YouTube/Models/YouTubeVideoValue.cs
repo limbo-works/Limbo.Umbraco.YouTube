@@ -4,7 +4,7 @@ using Limbo.Umbraco.Video.Models.Videos;
 using Limbo.Umbraco.YouTube.PropertyEditors;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Skybrud.Essentials.Json.Extensions;
+using Skybrud.Essentials.Json.Newtonsoft.Extensions;
 
 namespace Limbo.Umbraco.YouTube.Models;
 

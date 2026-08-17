@@ -5,7 +5,7 @@ using Limbo.Umbraco.Video.Models.Videos;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Skybrud.Essentials.Json.Newtonsoft;
-using Skybrud.Essentials.Json.Converters.Time;
+using Skybrud.Essentials.Json.Newtonsoft.Converters.Time;
 using Skybrud.Essentials.Json.Newtonsoft.Extensions;
 using Skybrud.Social.Google.YouTube.Models.Videos;
 using Umbraco.Extensions;
@@ -53,7 +53,7 @@ public class YouTubeVideoDetails : IVideoDetails {
     /// Gets the duration of the video.
     /// </summary>
     [JsonProperty("duration")]
-    [JsonConverter(typeof(TimeSpanSecondsConverter))]
+    [JsonConverter(typeof(TimeSpanConverter))]
     public TimeSpan Duration => Data.ContentDetails?.Duration.Value ?? TimeSpan.Zero;
 
     TimeSpan? IVideoDetails.Duration => Duration;
@@ -61,14 +61,16 @@ public class YouTubeVideoDetails : IVideoDetails {
     /// <summary>
     /// Gets a list of thumbnails of the video.
     /// </summary>
+    // [CHANGE: Umbraco 17 upgrade - IVideoDetails in Limbo.Umbraco.Video 17 exposes IReadOnlyList<> rather
+    // than IEnumerable<> for Thumbnails and Files] Related: see documentation/UPGRADE-UMBRACO-17.md.
     [JsonProperty("thumbnails", NullValueHandling = NullValueHandling.Ignore)]
-    public IEnumerable<YouTubeThumbnail> Thumbnails { get; }
+    public IReadOnlyList<YouTubeThumbnail> Thumbnails { get; }
 
     /// <summary>
     /// Gets an array with the files of the video. This will currently always be empty.
     /// </summary>
     [JsonIgnore]
-    public IEnumerable<IVideoFile> Files { get; }
+    public IReadOnlyList<IVideoFile> Files { get; }
 
     /// <summary>
     /// Gets a reference to the <strong>snippet</strong> part of the video.
@@ -118,7 +120,7 @@ public class YouTubeVideoDetails : IVideoDetails {
     [JsonIgnore]
     public bool HasStatistics => Statistics != null;
 
-    IEnumerable<IVideoThumbnail> IVideoDetails.Thumbnails => Thumbnails;
+    IReadOnlyList<IVideoThumbnail> IVideoDetails.Thumbnails => Thumbnails;
 
     #endregion
 
@@ -133,7 +135,7 @@ public class YouTubeVideoDetails : IVideoDetails {
         if (thumbnails != null) {
             Thumbnails = new[] {
                 thumbnails.Default, thumbnails.Medium, thumbnails.High, thumbnails.Standard, thumbnails.MaxRes
-            }.WhereNotNull().Select(x => new YouTubeThumbnail(x));
+            }.WhereNotNull().Select(x => new YouTubeThumbnail(x)).ToArray();
 
         } else {
             Thumbnails = Array.Empty<YouTubeThumbnail>();
