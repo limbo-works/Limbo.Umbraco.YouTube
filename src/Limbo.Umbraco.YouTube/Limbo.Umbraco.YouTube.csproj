@@ -31,6 +31,7 @@
 
   <!-- Include additional metadata in the assembly -->
   <ItemGroup>
+    <AssemblyMetadata Include="Authors" Value="$(Authors)" />
     <AssemblyMetadata Include="PackageProjectUrl" Value="https://packages.limbo.works/limbo.umbraco.youtube/" />
     <AssemblyMetadata Include="DocumentationUrl" Value="https://packages.limbo.works/limbo.umbraco.youtube/docs/v17/" />
     <AssemblyMetadata Include="NuGetUrl" Value="https://www.nuget.org/packages/Limbo.Umbraco.YouTube" />
