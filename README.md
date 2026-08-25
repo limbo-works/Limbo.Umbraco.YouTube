@@ -42,16 +42,16 @@ The latest version (`v17.x`) supports Umbraco 17, whereas older releases support
 
 ### Umbraco 17
 
-The package targets Umbraco 17 and is available via [**NuGet**](https://www.nuget.org/packages/Limbo.Umbraco.YouTube/17.0.0-alpha001). To install the package, you can use either .NET CLI:
+The package targets Umbraco 17 and is available via [**NuGet**](https://www.nuget.org/packages/Limbo.Umbraco.YouTube). To install the package, you can use either .NET CLI:
 
 ```
-dotnet add package Limbo.Umbraco.YouTube --version 17.0.0-alpha001
+dotnet add package Limbo.Umbraco.YouTube --version 17.0.0-alpha002
 ```
 
 or the NuGet package manager:
 
 ```
-Install-Package Limbo.Umbraco.YouTube -Version 17.0.0-alpha001
+Install-Package Limbo.Umbraco.YouTube -Version 17.0.0-alpha002
 ```
 
 This is a **prerelease** version. See [**documentation/UPGRADE-UMBRACO-17.md**](./documentation/UPGRADE-UMBRACO-17.md) for what changed when the package was ported from Umbraco 13 to Umbraco 17.
