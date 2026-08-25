@@ -1,0 +1,12 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path="../.gitignore" />
+    <File Path="../debug.bat" />
+    <File Path="../LICENSE.md" />
+    <File Path="../README.md" />
+    <File Path="../release.bat" />
+    <File Path=".editorconfig" />
+    <File Path="Limbo.Umbraco.YouTube.sln.DotSettings" />
+  </Folder>
+  <Project Path="Limbo.Umbraco.YouTube/Limbo.Umbraco.YouTube.csproj" />
+</Solution>
